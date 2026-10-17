@@ -1,0 +1,341 @@
+[
+  {
+    "id": "briefing-2026-10",
+    "slug": "threat-to-undersea-cables",
+    "month": "October 2026",
+    "title": "The Threat to Undersea Cables: How Global Connectivity Could Be Disrupted",
+    "summary": "Over 95% of international digital traffic and financial transactions travel through seabed fiber cables. We assess the vulnerabilities and practical household steps.",
+    "readTime": "6 min read",
+    "category": "Critical National Infrastructure",
+    "threatLevel": "Substantial",
+    "introduction": "More than ninety-five per cent of global communications, electronic financial transfers, and digital cloud services rely on a fragile network of subsea fiber-optic cables rather than satellites. Growing state-sponsored interference and maritime reconnaissance in the North Atlantic and North Sea have elevated the risk of sudden, coordinated severed connections. Understanding how such disruption would cascade into everyday British life is vital for sensible household preparedness.",
+    "section1": {
+      "heading": "What is happening",
+      "paragraphs": [
+        "In recent months, allied defence and security agencies have observed unprecedented reconnaissance activity by hostile oceanographic survey vessels and auxiliary surface ships over vital transatlantic cable corridors off the coasts of the United Kingdom, Ireland, and Scandinavia. Subsea cables are physically vulnerable: they are rarely thicker than a garden hose on the deep seabed, and while armoured closer to landfall, they remain susceptible to commercial anchor dragging, deep-sea submersibles, and seabed explosives.",
+        "While individual accidental cuts by commercial fishing vessels occur dozens of times each year and are routinely routed around by telecommunications operators, deliberate multi-point sabotage presents an entirely distinct operational challenge. Modern internet architecture is highly redundant for routine single-line failures, but it is not engineered to withstand simultaneous cuts along primary arterial routes linking the United Kingdom to North America and mainland Europe.",
+        "A coordinated physical interdiction would instantly saturate remaining terrestrial and satellite links. It would trigger severe data packet loss, international traffic throttles, and degraded cloud latency across domestic financial institutions, payment card processors, and international logistics hubs.",
+        "The United Kingdom's geographic position makes it a critical global cable crossway, but also leaves the domestic digital economy uniquely exposed to asymmetric maritime hybrid actions conducted beneath the threshold of open warfare."
+      ]
+    },
+    "section2": {
+      "heading": "Why it matters to households and businesses",
+      "paragraphs": [
+        "For the citizen, undersea cable degradation would not simply mean interrupted video streaming or delayed social media. Modern payment card networks, retail banking synchronisation, fuel station card terminals, and electronic supply chain inventory systems depend heavily on continuous transatlantic server handshakes.",
+        "Should arterial connectivity be compromised, automated payment clearing houses and point-of-sale systems would experience rolling delays or intermittent offline modes. Supermarkets, petrol forecourts, and pharmacy dispensaries could be temporarily forced to rely on local batch processing or cash transactions.",
+        "Furthermore, two-factor authentication SMS verification codes and cloud-stored personal records may suffer delivery failures. In an economy where less than ten per cent of retail transactions now involve physical cash, even forty-eight hours of severe digital payment friction could create widespread public anxiety, queueing at cash dispensers, and localized supply delays."
+      ]
+    },
+    "section3": {
+      "heading": "What you can do: Proportionate household measures",
+      "items": [
+        "Maintain a cash reserve at home: Keep a modest supply of low-denomination banknotes (£5, £10, and £20 notes) to cover basic groceries, fuel, and prescriptions for several days should card payment terminals fail.",
+        "Secure local offline copies of essential records: Store hard copies or unencrypted offline local backups (e.g. on a password-protected external drive) of critical identity documents, insurance policies, medical prescriptions, and key contacts.",
+        "Configure offline-capable payment options: Ensure you possess physical debit or credit cards with chip and PIN functionality, as tap-to-pay mobile wallets on smartphones may encounter verification barriers if cloud services stall.",
+        "Establish an agreed family communications protocol: Designate an out-of-area landline number or mutual contact point where family members can leave voice messages if mobile internet data links become congested.",
+        "Keep a traditional battery-powered or wind-up FM/AM radio: National broadcasters, notably the BBC Radio 4 Long Wave and FM network, remain the statutory medium for verified emergency public information during communications blackouts."
+      ]
+    },
+    "conclusion": {
+      "heading": "The strategic assessment",
+      "paragraphs": [
+        "Preparedness is not about retreating into panic or anticipating inevitable catastrophe; it is about building practical resilience so that British society cannot be coerced by hostile interference. The United Kingdom Government and allied navies have expanded North Atlantic seabed patrols and cable surveillance, but national resilience fundamentally rests upon informed households possessing the capacity to withstand transient interruptions without panic.",
+        "By taking simple, measured precautions today, families reduce systemic demand on emergency services and demonstrate that society cannot be intimidated by asymmetric vulnerabilities."
+      ]
+    },
+    "question": {
+      "id": "q-2026-10",
+      "prompt": "According to this briefing on undersea cable vulnerabilities, which immediate domestic measure is most effective for mitigating short-term digital payment friction?",
+      "options": [
+        "Relying entirely on smartphone digital wallets and contactless mobile payments",
+        "Keeping a modest domestic reserve of low-denomination physical cash and offline records",
+        "Purchasing an industrial satellite ground dish for household broadband",
+        "Closing all electronic bank accounts and converting assets into precious metals"
+      ],
+      "correctIndex": 1,
+      "explanation": "The briefing specifically recommends maintaining a modest reserve of low-denomination banknotes (£5, £10, £20) and keeping offline records. In the event of undersea cable severed links, electronic card networks and cloud authentication suffer severe latency or outages; physical banknotes ensure seamless acquisition of basic necessities without demanding extreme or disproportionate reactions."
+    }
+  },
+  {
+    "id": "briefing-2026-09",
+    "slug": "understanding-hybrid-threats",
+    "month": "September 2026",
+    "title": "Understanding Hybrid Threats: What They Are and Why They Matter",
+    "summary": "State actors increasingly target civilian infrastructure, supply networks, and public psychology below the threshold of armed conflict.",
+    "readTime": "7 min read",
+    "category": "Strategic Threat",
+    "threatLevel": "Substantial",
+    "introduction": "Contemporary state competition is no longer confined to traditional military confrontations. Adversaries now employ a coordinated combination of cyber intrusions, infrastructure disruption, disinforming narratives, and economic coercion designed to weaken national cohesion without triggering an armed military response. This doctrine is known as hybrid warfare, and its primary target is the civilian population.",
+    "section1": {
+      "heading": "What is happening",
+      "paragraphs": [
+        "Over the past eighteen months, security services across Western Europe have recorded an escalating tempo of covert sabotage, distributed denial-of-service assaults against municipal services, and coordinated disinformation campaigns targeting public health and critical transport networks.",
+        "Unlike conventional warfare, hybrid aggression deliberately operates within the 'grey zone'—the ambiguous space below the threshold of open military conflict (Article 5 of the North Atlantic Treaty). By denying formal responsibility or employing proxy criminal syndicates, the hostile state creates confusion, delays political attribution, and avoids direct retaliatory military strikes.",
+        "Key targets are not frontline military bases, but rather commercial ports, automated water purification plants, regional energy distribution centres, and the digital systems underpinning NHS hospital trusts.",
+        "The objective is not outright physical destruction, but the gradual erosion of public confidence in democratic institutions, social trust, and the state's ability to maintain public order."
+      ]
+    },
+    "section2": {
+      "heading": "Why it matters to households and businesses",
+      "paragraphs": [
+        "Hybrid operations succeed when they induce disproportionate domestic disruption, psychological fatigue, and institutional paralysis. If a cyber incident causes intermittent railway signalling failures, and simultaneously social media platforms are flooded with alarming falsehoods regarding drinking water safety, societal anxiety quickly amplifies the initial disruption.",
+        "For British businesses and individuals, the consequences are tangible: unexpected supply delivery cancellations, temporary disruptions to local utilities, or targeted phishing campaigns exploiting national news events.",
+        "Recognising hybrid tactics prevents individuals from unwittingly acting as force multipliers for hostile actors through panic buying, sharing unverified rumours, or overwhelming emergency phone lines."
+      ]
+    },
+    "section3": {
+      "heading": "What you can do: Proportionate household measures",
+      "items": [
+        "Verify information through established, authoritative sources: During sudden municipal or national outages, refrain from reposting unverified social media claims; corroborate reports with local police, local authorities, and national news.",
+        "Strengthen household cyber hygiene: Apply multi-factor authentication (MFA) across all email and banking accounts, regularly update device operating systems, and use distinct passwords generated by a reputable password manager.",
+        "Maintain a standard three-day household resilience reserve: Ensure your home possesses three days of drinking water (three litres per person daily) and non-perishable food to absorb short-term municipal disruptions without stress.",
+        "Foster neighbourhood awareness: Establish contact with immediate neighbours, particularly elderly or vulnerable residents, so mutual assistance can be deployed independently of strained emergency services.",
+        "Report suspicious activity: Promptly report unusual reconnaissance near critical infrastructure or municipal utility stations to the Anti-Terrorist Hotline (0800 789 321) or local police."
+      ]
+    },
+    "conclusion": {
+      "heading": "The strategic assessment",
+      "paragraphs": [
+        "The ultimate target of grey-zone hybrid warfare is public morale and social cohesion. When a populace is informed, self-reliant, and grounded in common sense, the coercive utility of hybrid threats collapses.",
+        "Individual preparedness is not a private hobby; it is a fundamental pillar of total national deterrence. A resilient population removes the adversary's leverage before it can be applied."
+      ]
+    },
+    "question": {
+      "id": "q-2026-09",
+      "prompt": "What is the primary strategic objective of hostile state actors when employing hybrid and grey-zone warfare against civilian populations?",
+      "options": [
+        "Initiating an immediate and formal armed military declaration of war",
+        "Capturing overseas territorial enclaves through naval amphibious landings",
+        "Eroding public trust, inducing social panic, and exhausting civil systems below the threshold of military conflict",
+        "Compelling civilian populations to abandon all electronic banking and telecommunications permanently"
+      ],
+      "correctIndex": 2,
+      "explanation": "Hybrid warfare specifically aims to operate below the threshold of open armed conflict, using cyber attacks, economic coercion, and psychological manipulation to corrode trust in democratic institutions and strain civil services without triggering a military response."
+    }
+  },
+  {
+    "id": "briefing-2026-08",
+    "slug": "power-and-energy-grid-disruption",
+    "month": "August 2026",
+    "title": "Power and Energy: Preparing for Sudden and Prolonged Grid Disruption",
+    "summary": "Severe weather, technical cascade failures, or targeted sabotage can cause regional power outages. How to safeguard your home and family.",
+    "readTime": "6 min read",
+    "category": "Household Resilience",
+    "threatLevel": "Moderate",
+    "introduction": "Modern society is profoundly dependent upon an uninterrupted electrical supply. From domestic heating controls and water booster pumps in high-rise buildings to card payment terminals and cellular base stations, electricity is the lifeblood of civilian life. A prolonged blackout requires practical preparation, not fearful overreaction.",
+    "section1": {
+      "heading": "What is happening",
+      "paragraphs": [
+        "The United Kingdom's National Grid operates one of the most sophisticated and stable power transmission networks in the world. However, the energy transition towards decentralised renewable generation, combined with aging distribution assets and extreme meteorological events, has introduced novel operational complexities.",
+        "In addition, European intelligence authorities have warned of recurring cyber probing aimed at supervisory control and data acquisition (SCADA) systems that regulate substations and regional interconnectors.",
+        "While catastrophic nationwide 'black start' collapses are exceedingly rare, localised or regional outages lasting from six to seventy-two hours are an acknowledged civil emergency risk, as demonstrated during Storm Arwen and subsequent severe winter storms.",
+        "Under such conditions, cellular telephone masts typically run on battery backups that deplete after four to eight hours, progressively severing mobile internet and voice coverage across affected regions."
+      ]
+    },
+    "section2": {
+      "heading": "Why it matters to households and businesses",
+      "paragraphs": [
+        "Many citizens mistakenly assume that only lighting is affected during an outage. In reality, modern domestic gas central heating boilers require electric pumps and digital thermostats to function, meaning homes will rapidly lose heat in winter.",
+        "In modern apartments, electric water pumps supply mains pressure to upper floors; power cuts can therefore swiftly interrupt cold water supply. Supermarket refrigeration fails, electric vehicle charging stops, and local petrol pumps cannot dispense fuel.",
+        "Cash dispensing machines (ATMs) and contactless payment systems go offline, creating immediate barriers to acquiring fuel, food, and transport."
+      ]
+    },
+    "section3": {
+      "heading": "What you can do: Proportionate household measures",
+      "items": [
+        "Install safe, high-output LED lighting: Store battery-powered LED lanterns and head torches in easily accessible drawers on each floor. Avoid naked candles due to documented fire hazards.",
+        "Maintain charged power banks: Keep at least two high-capacity portable power banks (10,000 to 20,000 mAh) fully charged to recharge mobile phones and medical monitoring devices.",
+        "Keep a battery or wind-up radio: Retain an analogue FM/AM or DAB radio with spare batteries to receive official civil updates via local and national BBC radio stations.",
+        "Protect domestic food supplies: Keep refrigerator and freezer doors closed during an outage; an unopened domestic freezer will keep food safely frozen for approximately 24 to 48 hours.",
+        "Know how to safely isolate utilities: Familiarise all adult family members with the location and operation of the domestic consumer unit (fuse box) and mains water stopcock."
+      ]
+    },
+    "conclusion": {
+      "heading": "The strategic assessment",
+      "paragraphs": [
+        "Grid disruption is an inconvenience that can be comfortably managed when simple domestic preparations are in place. Those who have prepared warm clothing, safe lighting, stored water, and emergency communication can remain safe and calm at home.",
+        "This self-sufficiency frees emergency services and local authority civil contingency teams to concentrate resources on hospital patients, care facilities, and genuinely vulnerable individuals."
+      ]
+    },
+    "question": {
+      "id": "q-2026-08",
+      "prompt": "Why are naked candles strongly discouraged by emergency services during a prolonged domestic power cut?",
+      "options": [
+        "Because candles absorb oxygen needed for household ventilation",
+        "Because candles present a severe domestic fire hazard, whereas battery LED lanterns are safe and reliable",
+        "Because open flames interfere with local cellular telephone signals",
+        "Because candles do not comply with local authority council tax regulations"
+      ],
+      "correctIndex": 1,
+      "explanation": "Fire and rescue services consistently advise against candles during power cuts because domestic fires surge when unattended or tipped candles ignite furnishings. Modern battery-powered LED lanterns and head torches provide safer, superior illumination without risk."
+    }
+  },
+  {
+    "id": "briefing-2026-07",
+    "slug": "supply-chain-resilience",
+    "month": "July 2026",
+    "title": "Supply Chain Resilience: What to Do When Supermarket Shelves Empty",
+    "summary": "Just-in-time delivery systems mean retail stores hold merely forty-eight hours of food reserves. How households can build a sensible buffer.",
+    "readTime": "6 min read",
+    "category": "Supply Chain",
+    "threatLevel": "Moderate",
+    "introduction": "Modern retail distribution in the United Kingdom operates on a finely balanced 'just-in-time' logistics model. Supermarkets do not hold back-room stockpiles; goods are ordered automatically and delivered constantly by Heavy Goods Vehicles (HGVs). Any disruption to fuel, maritime shipping routes, or automated inventory software causes visible stock deficits within forty-eight hours.",
+    "section1": {
+      "heading": "What is happening",
+      "paragraphs": [
+        "Global trade routes face persistent bottlenecks, ranging from geopolitical tensions at maritime choke points like the Bab el-Mandeb and the Strait of Malacca, to driver shortages and cyber incidents at major container ports such as Felixstowe and Rotterdam.",
+        "The UK retail grocery model prioritises efficiency over redundancy. Warehousing space is minimized to reduce commercial overheads, meaning that the national supply chain is remarkably efficient in peacetime, but brittle when subjected to external shocks.",
+        "When public panic buying is triggered by sensationalist media reports, demand spikes by 300% to 500% within hours. No logistics network on earth can replenish shelves at that velocity, converting minor transient delivery hiccups into acute shortages.",
+        "Understanding this dynamic demonstrates why individual household buffers prevent both personal distress and national hoarding panics."
+      ]
+    },
+    "section2": {
+      "heading": "Why it matters to households and businesses",
+      "paragraphs": [
+        "When supply lines wobble, the first items to disappear from shelves are staples: bottled water, long-life milk, bread, canned goods, infant formula, and pet food. Soon after, household sanitary items and over-the-counter pharmaceuticals run short.",
+        "For households without a modest food buffer, a forty-eight hour distribution breakdown forces stressful queuing, inflated black-market prices, or reliance on emergency local authority welfare provisions.",
+        "Conversely, households that maintain a rolling pantry can calmly ride out temporary shortages without participating in undignified or socially destructive supermarket scrambles."
+      ]
+    },
+    "section3": {
+      "heading": "What you can do: Proportionate household measures",
+      "items": [
+        "Adopt a rolling domestic pantry system: Rather than hoarding unfamiliar survival rations, purchase a few extra units of non-perishable foods your household already eats (pasta, rice, canned fish, pulses, tinned vegetables) and rotate them regularly.",
+        "Maintain a minimum 7-to-10 day family food reserve: Ensure your household has sufficient ambient food requiring minimal water and cooking fuel.",
+        "Stock alternative cooking methods: Keep a small portable camping gas stove or ensure you have foods that can be eaten cold if household gas or electricity is unavailable.",
+        "Prescription medicines buffer: Maintain a 14-to-30 day supply of essential daily prescription medications, ordering repeat prescriptions well before your supply dwindles to its final doses.",
+        "Pet and infant necessities: Keep a two-week reserve of specialist infant formula, nappies, and pet food, as these are frequently the hardest items to substitute during retail shortages."
+      ]
+    },
+    "conclusion": {
+      "heading": "The strategic assessment",
+      "paragraphs": [
+        "A rolling household pantry is not panic buying; it is prudent household management. When responsible citizens maintain a quiet cushion at home, retail demand remains steady during crises, allowing commercial logistics and emergency distributors to support those who are genuinely vulnerable.",
+        "Resilience begins in the domestic larder, built incrementally through ordinary weekly shopping."
+      ]
+    },
+    "question": {
+      "id": "q-2026-07",
+      "prompt": "What is the primary benefit of maintaining a 'rolling pantry' rather than buying emergency survival rations in a crisis?",
+      "options": [
+        "It eliminates the need for any domestic refrigeration forever",
+        "It integrates ordinary foods your family regularly consumes, avoids food waste, and prevents panic buying during sudden supply disruptions",
+        "It guarantees that government emergency food vouchers will be paid in cash",
+        "It allows households to legally resell groceries during a national emergency"
+      ],
+      "correctIndex": 1,
+      "explanation": "A rolling pantry relies on gradually purchasing and consuming standard pantry staples that the household already uses, ensuring high food rotation, zero waste, and complete dietary familiarity without engaging in disruptive crisis hoarding."
+    }
+  },
+  {
+    "id": "briefing-2026-06",
+    "slug": "communication-in-a-crisis",
+    "month": "June 2026",
+    "title": "Communication in a Crisis: How to Stay Connected When Networks Fail",
+    "summary": "When mobile networks saturate or fail, standard communications collapse. Practical contingency protocols for British families.",
+    "readTime": "5 min read",
+    "category": "Communications",
+    "threatLevel": "Substantial",
+    "introduction": "In any significant incident—whether a major flood, severe storm, or terrorist attack—cellular telecommunications networks become instantaneously congested. Voice calls fail to connect, and data networks slow to a crawl. Preparing clear communications contingencies in advance ensures family members can locate one another without panic.",
+    "section1": {
+      "heading": "What is happening",
+      "paragraphs": [
+        "Commercial cellular networks are engineered to handle average concurrent traffic with a modest safety margin. During a national emergency or sudden regional crisis, millions of simultaneous calls and data queries instantly overwhelm mobile cell towers.",
+        "Furthermore, under the UK Government's Cabinet Office arrangements, the Mobile Infrastructure Access Scheme (MTPAS) can be invoked by police commanders to prioritize emergency responders' communications, shedding civilian traffic in designated geographic cells.",
+        "Without prior planning, family members separated at work, school, or transit hubs cannot coordinate or verify each other's safety, leading to intense anxiety and uncoordinated movements that complicate emergency service operations."
+      ]
+    },
+    "section2": {
+      "heading": "Why it matters to households and businesses",
+      "paragraphs": [
+        "When mobile communications fail, people reflexively attempt to travel across congested road networks or crowd railway stations in search of relatives. This creates vehicular gridlock, obstructs blue-light vehicles, and separates families even further.",
+        "Simple agreed protocols remove uncertainty. If every family member knows where to go, whom to message, and how long to wait, the entire household operates calmly despite degraded digital infrastructure."
+      ]
+    },
+    "section3": {
+      "heading": "What you can do: Proportionate household measures",
+      "items": [
+        "Prioritise SMS text messaging over voice calls: Text messages (SMS) use minimal network bandwidth and will queue in carrier buffers to transmit as soon as a microscopic signal window opens, even when voice calls fail completely.",
+        "Designate an out-of-area family contact: Mobile calls within a disaster zone usually fail due to local tower overload, but trunk calls outside the affected region frequently succeed. Agree on a relative in another county to act as your central check-in point.",
+        "Agree primary and secondary meeting points: Establish a primary rendezvous point (e.g., home) and a secondary location (e.g., a local community hall, library, or relative's house) if your home or street is cordoned off.",
+        "Carry a printed contact card: Do not rely solely on phone address books. Ensure school children and adults carry a laminated wallet card listing essential emergency phone numbers, blood groups, and medical conditions.",
+        "Retain an FM/AM radio: For authoritative public information, broadcast radio transmitters on Holme Moss, Droitwich, and regional masts provide continuous coverage irrespective of internet collapse."
+      ]
+    },
+    "conclusion": {
+      "heading": "The strategic assessment",
+      "paragraphs": [
+        "In times of tension, communication discipline is as essential as physical protection. Agreeing on a simple plan beforehand replaces chaos with quiet confidence.",
+        "Make this coming weekend the occasion to spend fifteen minutes agreeing your family's communications contingency."
+      ]
+    },
+    "question": {
+      "id": "q-2026-06",
+      "prompt": "During an emergency when cellular voice calls are failing due to network congestion, which communication method has the highest probability of delivering your message?",
+      "options": [
+        "Continuous high-definition video calling via cellular data",
+        "Standard SMS text messaging to an agreed out-of-area contact person",
+        "Driving between mobile mast sites to find stronger reception",
+        "Posting repeated status videos to social media streaming platforms"
+      ],
+      "correctIndex": 1,
+      "explanation": "SMS text messages require negligible network bandwidth and are queued automatically by telecommunications systems for transmission during brief signal micro-bursts, succeeding when voice lines and heavy data streaming are congested."
+    }
+  },
+  {
+    "id": "briefing-2026-05",
+    "slug": "food-and-water-household-preparedness",
+    "month": "May 2026",
+    "title": "Food and Water: A Practical Guide to Household Preparedness",
+    "summary": "Clean drinking water is the single most critical survival requirement in any civil emergency. How to store and preserve life-sustaining supplies.",
+    "readTime": "6 min read",
+    "category": "Household Resilience",
+    "threatLevel": "Substantial",
+    "introduction": "A human being can survive for weeks without food, but only three days without water. While the United Kingdom enjoys high standards of tap water safety, municipal pipe failures, electrical outages affecting booster pumps, and chemical or biological contamination events can halt domestic supply with little warning. Having stored water is the foundation of household resilience.",
+    "section1": {
+      "heading": "What is happening",
+      "paragraphs": [
+        "Across the United Kingdom, thousands of miles of water supply pipes date from the Victorian and mid-twentieth century eras. Climate change has driven alternating cycles of summer soil contraction followed by intense winter rainfall, triggering ground movement and unprecedented bursts in major trunk mains.",
+        "In addition, water treatment works and pumping stations are heavily reliant on continuous electrical power. In any prolonged regional electrical disruption, water pressure in distribution mains drops within twelve to twenty-four hours.",
+        "When water pressure falls, water companies are obliged by public health law to issue 'Boil Water Notices' or shut off mains to prevent back-siphonage of contaminants, leaving entire urban boroughs dependent upon municipal bottled water distribution stations."
+      ]
+    },
+    "section2": {
+      "heading": "Why it matters to households and businesses",
+      "paragraphs": [
+        "When water service stops, queues at local water bowsers and supermarkets form within minutes. A single supermarket branch with 2,000 litres of bottled water will be stripped bare in less than an hour by panicked local residents.",
+        "Furthermore, water is needed not solely for drinking, but for basic hygiene, cooking, and sanitation. Without stored water, toilet flushing ceases, rapidly creating severe sanitation hazards inside family homes.",
+        "Possessing a clean, domestic water buffer insulates your family from hygiene risks and spares you from standing for hours in wind and rain at emergency bowser distribution points."
+      ]
+    },
+    "section3": {
+      "heading": "What you can do: Proportionate household measures",
+      "items": [
+        "Store three litres per person per day for at least three days: For a household of four, maintain a minimum of 36 litres of commercially sealed bottled water in a cool, dark cupboard away from direct sunlight and chemicals.",
+        "Learn how to store municipal tap water safely: If using reusable food-grade polyethylene containers, wash thoroughly with warm soapy water, rinse, fill from cold mains tap, and replace every six months.",
+        "Keep unscented household bleach (sodium hypochlorite) or water purification tablets: In severe contingencies, clean municipal water can be disinfected by adding 2 drops of standard 5% unscented household bleach per litre of clear water and waiting 30 minutes.",
+        "Sanitation water reserves: Keep spare collapsible jerrycans or fill domestic baths if an imminent regional water shut-off is officially notified by your water undertaker.",
+        "Keep personal hydration filters: For outdoor or emergency purification, compact certified hollow-fiber membrane filters (e.g., Sawyer or LifeStraw) remove 99.999% of biological contaminants."
+      ]
+    },
+    "conclusion": {
+      "heading": "The strategic assessment",
+      "paragraphs": [
+        "Securing your home's water supply is the single most empowering act of civil preparedness. It costs negligible money, requires modest storage space under stairs or in utility cupboards, and immediately guarantees independence during sudden municipal infrastructure hiccups.",
+        "Once your water buffer is in place, the remainder of personal preparedness falls naturally into place."
+      ]
+    },
+    "question": {
+      "id": "q-2026-05",
+      "prompt": "What is the UK emergency planning recommended minimum volume of drinking and basic sanitation water to store per person per day?",
+      "options": [
+        "Half a litre per person per day",
+        "One litre per household regardless of size",
+        "Three litres per person per day for a minimum of three days",
+        "Twenty-five litres per person per day"
+      ],
+      "correctIndex": 2,
+      "explanation": "UK civil contingency and international emergency guidelines recommend a minimum baseline of 3 litres of potable water per person per day (covering 2 litres for drinking and hydration, and 1 litre for basic food preparation and sanitation) for at least 72 hours (3 days)."
+    }
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "name": "UDSS Personal Preparedness",
+  "description": "Monthly national resilience briefings and practical personal preparedness guidance for UK citizens, published by Universal Defence and Security Solutions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

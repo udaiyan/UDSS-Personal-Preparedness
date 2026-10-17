@@ -1,0 +1,201 @@
+[
+  {
+    "id": "chk-basic-water",
+    "tier": "basic",
+    "category": "Water & Sustenance",
+    "title": "Store three days of drinking water",
+    "description": "Maintain at least 3 litres of potable water per person per day for 72 hours. Store in a cool, dark cupboard away from direct sunlight and household chemicals.",
+    "priority": "Essential",
+    "tip": "Commercially sealed bottled water retains potable quality for years if unopened. Keep a manual plastic siphon or tap for large bottles."
+  },
+  {
+    "id": "chk-basic-food",
+    "tier": "basic",
+    "category": "Water & Sustenance",
+    "title": "Maintain a 72-hour non-perishable rolling pantry",
+    "description": "Stock 3 to 5 days of ambient, shelf-stable foods that your household normally consumes: canned proteins, beans, vegetables, pasta, rice, and dried fruit. Check expiry dates biannually.",
+    "priority": "Essential",
+    "tip": "Ensure you possess a heavy-duty manual tin opener. Without one, tinned provisions are inaccessible during electrical outages."
+  },
+  {
+    "id": "chk-basic-light",
+    "tier": "basic",
+    "category": "Power & Lighting",
+    "title": "Store battery LED lanterns and torches",
+    "description": "Place reliable battery-powered LED lanterns or head torches on each floor of your home, plus sealed spare alkaline batteries. Strictly avoid open flames or candles due to documented fire risks.",
+    "priority": "Essential",
+    "tip": "Head torches leave both hands free for cooking, attending to family members, or examining utility stopcocks."
+  },
+  {
+    "id": "chk-basic-powerbank",
+    "tier": "basic",
+    "category": "Power & Lighting",
+    "title": "Keep portable power banks fully charged",
+    "description": "Retain at least two high-capacity power banks (10,000 to 20,000 mAh) charged at all times to recharge mobile phones and medical diagnostic tools during regional blackouts.",
+    "priority": "High",
+    "tip": "Top up power banks on the first weekend of every month to counteract natural chemical self-discharge."
+  },
+  {
+    "id": "chk-basic-radio",
+    "tier": "basic",
+    "category": "Communications",
+    "title": "Battery-powered or wind-up broadcast radio",
+    "description": "Maintain an analogue FM/AM or DAB radio with spare batteries. National broadcasters (notably BBC Radio 4 on 104 FM / 198 LW) are the statutory conduit for civil contingency directives.",
+    "priority": "Essential",
+    "tip": "Test reception of BBC Radio 4 and local BBC stations twice per year to verify frequency familiarity."
+  },
+  {
+    "id": "chk-basic-meds",
+    "tier": "basic",
+    "category": "Medical & Health",
+    "title": "Fourteen-day buffer of essential prescription medicine",
+    "description": "Ensure family members dependent on critical daily prescription medicines maintain a rolling 14 to 30 day supply, reordering repeat prescriptions well before final doses.",
+    "priority": "Essential",
+    "tip": "Store a printed copy of repeat prescription slips listing specific medication names, dosages, and GP surgery contacts."
+  },
+  {
+    "id": "chk-basic-firstaid",
+    "tier": "basic",
+    "category": "Medical & Health",
+    "title": "Comprehensive domestic first aid kit",
+    "description": "Equip your home with sterile dressings, adhesive bandages, antiseptic wipes, burn dressings, medical tape, trauma shears, and pain relief medication (paracetamol, ibuprofen).",
+    "priority": "Essential",
+    "tip": "Keep the first aid kit in a central location known to all adults and older children."
+  },
+  {
+    "id": "chk-basic-cash",
+    "tier": "basic",
+    "category": "Financial & Records",
+    "title": "Domestic cash reserve in low denominations",
+    "description": "Keep a modest reserve of physical cash (£5, £10, and £20 banknotes) in a secure, fire-resistant lockbox at home for situations where electronic card terminals fail.",
+    "priority": "High",
+    "tip": "Avoid £50 notes as convenience stores and pharmacies may be unable to provide change during network outages."
+  },
+  {
+    "id": "chk-basic-docs",
+    "tier": "basic",
+    "category": "Financial & Records",
+    "title": "Offline copies of vital records in waterproof pouch",
+    "description": "Store certified copies of passports, birth certificates, insurance policies, property deeds, and medical summaries in a portable waterproof document pouch.",
+    "priority": "Essential",
+    "tip": "Include an unencrypted USB drive with high-resolution digital scans stored inside the pouch."
+  },
+  {
+    "id": "chk-basic-contacts",
+    "tier": "basic",
+    "category": "Evacuation & Planning",
+    "title": "Printed household emergency contact & meeting plan",
+    "description": "Carry a laminated or durable card listing immediate family mobile numbers, an agreed out-of-area relative contact point, primary and secondary meeting points, and trigger rules.",
+    "priority": "Essential",
+    "tip": "When cellular towers saturate, out-of-area trunk lines and SMS text messages succeed when local voice calls fail."
+  },
+  {
+    "id": "chk-basic-shutoffs",
+    "tier": "basic",
+    "category": "Evacuation & Planning",
+    "title": "Locate and tag household utility shutoffs",
+    "description": "Ensure all adult household members know the precise location of the internal stopcock (water), gas meter isolation lever, and electricity consumer unit (main breaker).",
+    "priority": "Essential",
+    "tip": "Affix a durable tag to the water stopcock and test turning it quarterly to prevent limescale seizure."
+  },
+  {
+    "id": "chk-basic-fuel",
+    "tier": "basic",
+    "category": "Evacuation & Planning",
+    "title": "Maintain vehicle fuel tank at least half-full",
+    "description": "Adopt the discipline of refuelling when your fuel tank dips to half capacity. Petrol forecourt pumps rely on grid electricity; during a blackout, stations cannot dispense fuel.",
+    "priority": "Recommended",
+    "tip": "In winter, keep a warm blanket, sturdy footwear, and a bottle of water in the boot."
+  },
+  {
+    "id": "chk-adv-food",
+    "tier": "advanced",
+    "category": "Water & Sustenance",
+    "title": "One-month extended food reserve with rotation plan",
+    "description": "Build a supplementary 30-day reserve of long-life staples (bulk oats, pulses, tinned meat/fish, vacuum-sealed grains, dried soups) tailored to your household's dietary and caloric requirements.",
+    "priority": "Optional",
+    "tip": "Label cartons with month/year of acquisition and rotate items into your weekly cooking to ensure zero waste."
+  },
+  {
+    "id": "chk-adv-water-filter",
+    "tier": "advanced",
+    "category": "Water & Sustenance",
+    "title": "Gravity water filtration or certified microfiltration",
+    "description": "Possess a gravity-fed ceramic/carbon filter (e.g. British Berkefeld, Doulton) or hollow-fibre membrane filter (0.1 micron) to purify municipal bowser water or rainwater safely.",
+    "priority": "Recommended",
+    "tip": "Certified 0.1-micron filters remove 99.999% of bacteria, cysts, and protozoa without chemical tablets."
+  },
+  {
+    "id": "chk-adv-solar-power",
+    "tier": "advanced",
+    "category": "Power & Lighting",
+    "title": "Solar battery charger or portable power station",
+    "description": "Deploy a foldable solar panel (30W-100W) paired with a portable LiFePO4 battery power station (250Wh-1000Wh) for sustaining phones, radios, lanterns, or essential medical diagnostic devices.",
+    "priority": "Optional",
+    "tip": "Solar should supplement, never replace, pre-charged power banks. In UK winter weather, solar output can drop to 10-15% of rated capacity. For CPAP or medical devices, verify power station watt-hour requirements in advance.",
+    "buyingGuidance": "Use case guidance: (1) Small 30W folding panel for phones/head torches in summer; (2) 500Wh portable power station for low-draw lighting, routers, and medical kit; (3) Do not rely on pocket solar chargers with tiny internal batteries as they charge too slowly under British cloud cover."
+  },
+  {
+    "id": "chk-adv-fuel-storage",
+    "tier": "advanced",
+    "category": "Power & Lighting",
+    "title": "Safe fuel reserve in approved jerry cans",
+    "description": "Store up to 20 litres of petrol or diesel in UK HSE-approved metal (Wavian) or certified HDPE plastic containers in a well-ventilated outbuilding or secure garage away from living quarters.",
+    "priority": "Optional",
+    "tip": "Under UK Petroleum Regulations, storing more than 30 litres of petrol at home requires licensing. Add a quality fuel stabiliser to prevent petrol degradation over six months."
+  },
+  {
+    "id": "chk-adv-trauma-aid",
+    "tier": "advanced",
+    "category": "Medical & Health",
+    "title": "Trauma haemorrhage kit and basic first aid training",
+    "description": "Equip an emergency trauma pack including a certified windlass tourniquet (CAT Gen 7), haemostatic gauze (Celox / QuikClot), emergency pressure bandages, and burn dressings. Complete a recognized St John Ambulance or British Red Cross course.",
+    "priority": "Recommended",
+    "tip": "Tourniquets and haemostatic dressings save lives within minutes during severe cuts or structural collapses before blue-light services arrive."
+  },
+  {
+    "id": "chk-adv-comms",
+    "tier": "advanced",
+    "category": "Communications",
+    "title": "Off-grid communications (PMR446 radios / Satellite)",
+    "description": "Keep a pair of licence-free PMR446 two-way walkie-talkies for local neighbourhood contact up to 1-3km, or a satellite communicator (Garmin inReach) for remote SOS messaging when cellular masts fail.",
+    "priority": "Optional",
+    "tip": "PMR446 channels 1-8 are licence-free across the UK. Agree on a standard call channel and hourly check-in window (e.g. top of the hour) with immediate family."
+  },
+  {
+    "id": "chk-adv-heat",
+    "tier": "advanced",
+    "category": "Home Resilience",
+    "title": "Indoor-safe backup heating and thermal insulation",
+    "description": "Prepare a designated 'warm room' with heavy curtains, thermal door snakes, 4-season sleeping bags, woollen blankets, and if appropriate, an indoor-safe catalytic gas heater with a working carbon monoxide alarm.",
+    "priority": "Recommended",
+    "tip": "Never use outdoor camping heaters, barbecues, or unvented paraffin stoves inside without proper ventilation; carbon monoxide is odourless and lethal."
+  },
+  {
+    "id": "chk-adv-cook",
+    "tier": "advanced",
+    "category": "Home Resilience",
+    "title": "Outdoor camping gas stove for off-grid hot meals",
+    "description": "Keep a single-burner butane or propane camping stove with sealed gas canisters stored in a cool place, reserved for boiling water and heating food outdoors or in a well-ventilated porch.",
+    "priority": "Recommended",
+    "tip": "Never operate camping stoves inside sealed domestic rooms. Always store gas cylinders away from heat and direct sunlight."
+  },
+  {
+    "id": "chk-adv-tools",
+    "tier": "advanced",
+    "category": "Home Resilience",
+    "title": "Home maintenance resilience toolkit",
+    "description": "Assemble emergency repair supplies: pipe insulation foam, self-amalgamating waterproof repair tape, heavy-duty tarpaulin, duct tape, assorted fuses, pry bar, and work gloves.",
+    "priority": "Recommended",
+    "tip": "During winter storms, self-amalgamating tape can temporarily seal burst pipes while mains pressure is isolated."
+  },
+  {
+    "id": "chk-adv-community",
+    "tier": "advanced",
+    "category": "Evacuation & Planning",
+    "title": "Neighbourhood resilience & vulnerable resident coordination",
+    "description": "Identify vulnerable neighbours (elderly, mobility-impaired, medically reliant) on your street. Join or establish a local community resilience group linked with your local parish or borough emergency planning officer.",
+    "priority": "Recommended",
+    "tip": "In wide-area crises, community mutual aid resolves over 80% of immediate civilian welfare challenges before statutory emergency services arrive."
+  }
+]

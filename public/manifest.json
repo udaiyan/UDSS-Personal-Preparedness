@@ -1,0 +1,32 @@
+{
+  "id": "/",
+  "name": "UDSS Personal Preparedness",
+  "short_name": "UDSS Brief",
+  "description": "Monthly national resilience briefings and practical personal preparedness guidance for UK citizens, published by Universal Defence and Security Solutions.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F5F5F0",
+  "theme_color": "#1B2A4A",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

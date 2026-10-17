@@ -1,0 +1,145 @@
+'use client';
+
+import React from 'react';
+import Image from 'next/image';
+import { ExternalLink, Shield, Mail, Briefcase, Lock } from 'lucide-react';
+
+interface FooterProps {
+  onOpenCorporateModal: () => void;
+  onNavigateTab: (tab: 'home' | 'checklist' | 'about') => void;
+}
+
+export function Footer({ onOpenCorporateModal, onNavigateTab }: FooterProps) {
+  return (
+    <footer className="mt-16 bg-[#0E1726] text-[#D0D0D0] border-t-4 border-[#1B2A4A]">
+      {/* Official Mandatory Disclaimer Banner */}
+      <div className="bg-[#142034] border-b border-[#243552] py-4 px-4 sm:px-6">
+        <div className="max-w-5xl mx-auto flex items-start gap-3 text-xs leading-relaxed text-slate-300">
+          <Shield className="w-4 h-4 text-[#8B1A1A] shrink-0 mt-0.5" />
+          <div>
+            <strong className="text-white font-semibold">Statutory Disclaimer: </strong>
+            This app provides general information and guidance on personal preparedness. It is not a substitute for official government advice. In an emergency, always follow instructions from the police, local authorities, and the UK government.
+          </div>
+        </div>
+      </div>
+
+      {/* Main Footer navigation & information */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-[#253556]">
+          {/* Brand Column */}
+          <div className="md:col-span-2 space-y-3">
+            <div className="flex items-center gap-3">
+              <div className="relative w-8 h-8 rounded bg-[#1B2A4A] border border-[#354B78] flex items-center justify-center overflow-hidden">
+                <Image
+                  src="/icon.svg"
+                  alt="UDSS Crest"
+                  width={32}
+                  height={32}
+                  referrerPolicy="no-referrer"
+                  className="object-contain p-0.5"
+                />
+              </div>
+              <span className="font-serif text-lg font-bold tracking-tight text-white">
+                Universal Defence and Security Solutions
+              </span>
+            </div>
+            <p className="text-xs text-slate-400 leading-relaxed max-w-md">
+              Bringing together the collective experience of former senior military commanders, intelligence directors, and civil contingency advisers to fortify national and societal resilience.
+            </p>
+            <div className="pt-1 text-[11px] font-mono text-slate-500">
+              33 Cannon St, London EC4M 5SB, United Kingdom
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div className="space-y-3">
+            <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-white">
+              Application Sections
+            </h4>
+            <ul className="space-y-2 text-xs">
+              <li>
+                <button
+                  onClick={() => {
+                    onNavigateTab('home');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="text-slate-300 hover:text-white transition-colors"
+                >
+                  Monthly Briefings & Archive
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    onNavigateTab('checklist');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="text-slate-300 hover:text-white transition-colors"
+                >
+                  Household Preparedness Checklist
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    onNavigateTab('about');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="text-slate-300 hover:text-white transition-colors"
+                >
+                  About UDSS & Leadership
+                </button>
+              </li>
+              <li>
+                <a
+                  href="https://universal-defence.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-slate-300 hover:text-white transition-colors"
+                >
+                  universal-defence.com
+                  <ExternalLink className="w-3 h-3 text-slate-400" />
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Corporate Enquiries */}
+          <div className="space-y-3">
+            <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-white">
+              Corporate Enquiries
+            </h4>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Board-level briefings and strategic advisory for business continuity.
+            </p>
+            <button
+              onClick={onOpenCorporateModal}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-white bg-[#8B1A1A] hover:bg-[#721515] rounded border border-[#a42020] transition-colors"
+            >
+              <Briefcase className="w-3.5 h-3.5" />
+              Laurence Postgate
+            </button>
+            <p className="text-[11px] text-slate-400 font-mono">
+              laurence.postgate@universal-defence.com
+            </p>
+          </div>
+        </div>
+
+        {/* Bottom copyright & offline metadata */}
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+          <div>
+            &copy; 2026 Universal Defence and Security Solutions Ltd. All rights reserved. Registered in England &amp; Wales.
+          </div>
+          <div className="flex items-center gap-4 text-[11px] font-mono text-slate-400">
+            <span className="inline-flex items-center gap-1">
+              <Lock className="w-3 h-3" />
+              Local Storage Encryption / Offline Capable
+            </span>
+            <span>•</span>
+            <span>British English</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
