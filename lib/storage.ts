@@ -168,6 +168,7 @@ export const defaultProgress: UserProgress = {
   },
   answeredQuestions: {},
   readBriefingIds: [],
+  pantryChecklist: {},
 };
 
 // Populate initial grab bags for default members
@@ -218,6 +219,7 @@ export function getStoredProgress(): UserProgress {
     if (!parsed.emergencyPlan) parsed.emergencyPlan = defaultProgress.emergencyPlan;
     if (!parsed.utilityPlan) parsed.utilityPlan = defaultProgress.utilityPlan;
     if (!parsed.buddies) parsed.buddies = [];
+    if (!parsed.pantryChecklist) parsed.pantryChecklist = {};
     return parsed;
   } catch (e) {
     console.error('Failed to read user progress from localStorage', e);
@@ -513,6 +515,35 @@ export function updateUtilityPlan(plan: UtilityShutoffPlan): UserProgress {
   const updated: UserProgress = {
     ...current,
     utilityPlan: plan,
+  };
+  saveStoredProgress(updated);
+  return updated;
+}
+
+export function togglePantryItem(itemId: string): UserProgress {
+  const current = getProgressSnapshot();
+  const currentPantry = current.pantryChecklist || {};
+  const updatedPantry = {
+    ...currentPantry,
+    [itemId]: !currentPantry[itemId],
+  };
+  const updated: UserProgress = {
+    ...current,
+    pantryChecklist: updatedPantry,
+  };
+  saveStoredProgress(updated);
+  return updated;
+}
+
+export function setAllPantryItems(itemIds: string[], value: boolean): UserProgress {
+  const current = getProgressSnapshot();
+  const updatedPantry: Record<string, boolean> = { ...(current.pantryChecklist || {}) };
+  itemIds.forEach((id) => {
+    updatedPantry[id] = value;
+  });
+  const updated: UserProgress = {
+    ...current,
+    pantryChecklist: updatedPantry,
   };
   saveStoredProgress(updated);
   return updated;

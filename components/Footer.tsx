@@ -28,22 +28,17 @@ export function Footer({ onOpenCorporateModal, onNavigateTab }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-[#253556]">
           {/* Brand Column */}
           <div className="md:col-span-2 space-y-3">
-            <div className="flex items-center gap-3">
-              <div className="relative w-8 h-8 rounded bg-[#1B2A4A] border border-[#354B78] flex items-center justify-center overflow-hidden">
-                <Image
-                  src="/icon.svg"
-                  alt="UDSS Crest"
-                  width={32}
-                  height={32}
-                  referrerPolicy="no-referrer"
-                  className="object-contain p-0.5"
-                />
-              </div>
-              <span className="font-serif text-lg font-bold tracking-tight text-white">
-                Universal Defence and Security Solutions
-              </span>
+            <div className="bg-white/95 px-3 py-1.5 rounded shadow-xs inline-block border border-white/20">
+              <Image
+                src="/assets/aistudio/Logo_6a1e58a5.webp"
+                alt="Universal Defence and Security Solutions Logo"
+                width={220}
+                height={55}
+                referrerPolicy="no-referrer"
+                className="h-9 w-auto object-contain"
+              />
             </div>
-            <p className="text-xs text-slate-400 leading-relaxed max-w-md">
+            <p className="text-xs text-slate-400 leading-relaxed max-w-md pt-1">
               Bringing together the collective experience of former senior military commanders, intelligence directors, and civil contingency advisers to fortify national and societal resilience.
             </p>
             <div className="pt-1 text-[11px] font-mono text-slate-500">

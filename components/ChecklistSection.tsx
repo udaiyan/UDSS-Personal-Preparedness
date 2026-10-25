@@ -72,13 +72,14 @@ export function ChecklistSection({ items, progress }: ChecklistSectionProps) {
       `Household Prep ID: ${progress.prepId}`,
       `Date Generated: ${new Date().toLocaleDateString('en-GB')}`,
       '',
-      '--- BASIC TIER (IMMEDIATE 72-HOUR RESILIENCE) ---',
+      '--- BASIC TIER (IMMEDIATE 72-HOUR RESILIENCE • UK GOV BE READY STANDARD) ---',
     ];
 
     basicItems.forEach((item) => {
       const status = progress.checklistStatuses[item.id] || 'not_addressed';
-      const mark = status === 'completed' ? '[X]' : status === 'in_progress' ? '[-]' : '[ ]';
-      lines.push(`${mark} [${item.category}] ${item.title}`);
+      const mark = status === 'completed' ? '[X]' : status === 'in_progress' ? '[-]' : status === 'not_relevant' ? '[N/A]' : '[ ]';
+      const govTag = item.govStandard ? ' [UK GOV BE READY]' : '';
+      lines.push(`${mark} [${item.category}]${govTag} ${item.title}`);
       lines.push(`    ${item.description}`);
     });
 
@@ -105,7 +106,7 @@ export function ChecklistSection({ items, progress }: ChecklistSectionProps) {
   };
 
   return (
-    <section className="space-y-6">
+    <section id="household-measures-section" className="space-y-6 scroll-mt-24">
       {/* Official Section Heading */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-[#1B2A4A] pb-3">
         <div>
@@ -240,6 +241,33 @@ export function ChecklistSection({ items, progress }: ChecklistSectionProps) {
         </button>
       </div>
 
+      {/* UK Government Be Ready Alignment Banner for Basic Tier */}
+      {selectedTier === 'basic' && (
+        <div className="bg-[#FAF9F5] border-2 border-[#1B2A4A] p-4 sm:p-5 shadow-xs space-y-2">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#D0D0D0] pb-2.5">
+            <div className="flex items-center gap-2">
+              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-white bg-[#1B2A4A] px-2 py-0.5">
+                Official UK Government Standard
+              </span>
+              <span className="font-serif font-bold text-[#1B2A4A] text-sm">
+                HM Government &lsquo;Be Ready&rsquo; 3-Day Checklist
+              </span>
+            </div>
+            <a
+              href="https://beready.campaign.gov.uk/wp-content/uploads/sites/252/2026/10/Be-Ready-Checklist_English.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-mono font-semibold text-[#8B1A1A] hover:underline inline-flex items-center gap-1 shrink-0"
+            >
+              <span>Download Official Gov PDF &rarr;</span>
+            </a>
+          </div>
+          <p className="text-xs text-[#4A4A4A] leading-relaxed">
+            All 10 core provisions from the Cabinet Office civil contingency checklist are incorporated below: <strong>Water</strong> (3L/person/day), <strong>Food</strong> (3-day non-perishable), <strong>Light &amp; Warmth</strong> (torches, batteries, blankets/sleeping bags), <strong>Communication</strong> (FM radio, power banks), <strong>Money &amp; Documents</strong> (cash coins/notes, ID copies, contact cards), <strong>Health</strong> (first aid, prescription medicines), <strong>Hygiene</strong> (sanitiser, wet wipes), <strong>Baby products</strong>, <strong>Pet food &amp; water</strong>, and <strong>Community Mutual Aid</strong>.
+          </p>
+        </div>
+      )}
+
       {/* Category Filter Bar */}
       <div className="bg-white p-3 border border-[#D0D0D0] flex flex-wrap items-center gap-1.5 text-xs">
         <span className="font-semibold text-[#1A1A1A] mr-2">Category:</span>
@@ -297,6 +325,13 @@ export function ChecklistSection({ items, progress }: ChecklistSectionProps) {
                     >
                       {item.priority}
                     </span>
+
+                    {item.govStandard && (
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#1B2A4A] bg-[#FAF9F5] border border-[#1B2A4A] px-2 py-0.5 inline-flex items-center gap-1">
+                        <Shield className="w-3 h-3 text-[#8B1A1A]" />
+                        UK Gov Standard
+                      </span>
+                    )}
 
                     {isCompleted && (
                       <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 border border-emerald-300">

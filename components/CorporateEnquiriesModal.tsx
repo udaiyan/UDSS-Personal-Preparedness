@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { X, Mail, Phone, MapPin, Building, Copy, Check, ExternalLink } from 'lucide-react';
 
 interface CorporateEnquiriesModalProps {
@@ -49,13 +50,25 @@ export function CorporateEnquiriesModal({ isOpen, onClose }: CorporateEnquiriesM
       <div className="relative w-full max-w-2xl bg-white border border-[#D0D0D0] shadow-2xl rounded-none my-8 max-h-[90vh] flex flex-col">
         {/* Institutional header bar */}
         <div className="bg-[#1B2A4A] text-white px-6 py-4 flex items-center justify-between border-b-2 border-[#8B1A1A]">
-          <div>
-            <div className="text-[11px] font-mono tracking-widest text-slate-300 uppercase">
-              Universal Defence and Security Solutions
+          <div className="flex items-center gap-3">
+            <div className="bg-white/95 px-2.5 py-1 rounded shadow-xs border border-white/20">
+              <Image
+                src="/assets/aistudio/Logo_6a1e58a5.webp"
+                alt="UDSS Logo"
+                width={140}
+                height={35}
+                referrerPolicy="no-referrer"
+                className="h-6 w-auto object-contain"
+              />
             </div>
-            <h2 id="corporate-modal-title" className="font-serif text-xl sm:text-2xl font-bold text-white mt-0.5">
-              Corporate Enquiries
-            </h2>
+            <div>
+              <div className="text-[10px] font-mono tracking-widest text-slate-300 uppercase">
+                Advisory Directorate
+              </div>
+              <h2 id="corporate-modal-title" className="font-serif text-lg sm:text-xl font-bold text-white">
+                Corporate Enquiries
+              </h2>
+            </div>
           </div>
           <button
             onClick={onClose}

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { ExternalLink, Shield, Award, Users, BookOpen, Briefcase, ChevronRight } from 'lucide-react';
 
 interface AboutUDSSSectionProps {
@@ -11,16 +12,26 @@ export function AboutUDSSSection({ onOpenCorporateModal }: AboutUDSSSectionProps
   return (
     <article className="max-w-4xl mx-auto space-y-8">
       {/* Official Heading */}
-      <div className="border-b-2 border-[#1B2A4A] pb-4">
-        <span className="text-xs font-mono tracking-wider uppercase text-[#8B1A1A] font-bold">
-          Institutional Overview
-        </span>
-        <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#1B2A4A] mt-1">
-          Universal Defence and Security Solutions
-        </h1>
-        <p className="text-sm text-[#4A4A4A] mt-1">
-          Strategic defence advisory, civil contingency planning, and national resilience.
-        </p>
+      <div className="border-b-2 border-[#1B2A4A] pb-4 space-y-3">
+        <div className="bg-white p-3 sm:p-4 rounded border border-[#D0D0D0] inline-block shadow-xs">
+          <Image
+            src="/assets/aistudio/Logo_6a1e58a5.webp"
+            alt="Universal Defence and Security Solutions Logo"
+            width={320}
+            height={80}
+            priority
+            referrerPolicy="no-referrer"
+            className="h-10 sm:h-12 w-auto object-contain"
+          />
+        </div>
+        <div>
+          <span className="text-xs font-mono tracking-wider uppercase text-[#8B1A1A] font-bold block">
+            Institutional Overview &amp; Mandate
+          </span>
+          <p className="text-sm text-[#4A4A4A] mt-1">
+            Strategic defence advisory, civil contingency planning, and national resilience for government, industry, and citizens.
+          </p>
+        </div>
       </div>
 
       {/* Leadership & Mandate */}

@@ -53,6 +53,18 @@ export function HouseholdReadyScore({
     barColor = 'bg-amber-600';
   }
 
+  const handleReviewMeasures = () => {
+    if (onOpenChecklist) {
+      onOpenChecklist();
+    }
+    setTimeout(() => {
+      const el = document.getElementById('household-measures-section');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 60);
+  };
+
   return (
     <section suppressHydrationWarning className="bg-white border-2 border-[#1B2A4A] shadow-sm">
       {/* Top Identity & Status Bar */}
@@ -180,8 +192,10 @@ export function HouseholdReadyScore({
           </div>
 
           <button
-            onClick={onOpenChecklist}
-            className="text-xs font-semibold uppercase tracking-wider text-[#1B2A4A] hover:underline shrink-0 inline-flex items-center gap-1 font-mono"
+            type="button"
+            onClick={handleReviewMeasures}
+            aria-label="Review household preparedness measures"
+            className="text-xs font-semibold uppercase tracking-wider text-[#1B2A4A] hover:text-[#8B1A1A] hover:underline shrink-0 inline-flex items-center gap-1 font-mono cursor-pointer py-1 px-2.5 rounded bg-white sm:bg-transparent border border-[#D0D0D0] sm:border-0 shadow-xs sm:shadow-none transition-all active:scale-95"
           >
             Review Measures <ChevronRight className="w-3.5 h-3.5" />
           </button>

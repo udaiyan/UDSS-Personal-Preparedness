@@ -10,14 +10,14 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'UDSS Personal Preparedness | The Resilience Brief',
+  title: 'UDSS Civilian Preparedness Assistant | The Resilience Brief',
   description:
-    'Monthly national resilience briefings and practical personal preparedness guidance for UK citizens, published by Universal Defence and Security Solutions.',
-  applicationName: 'UDSS Personal Preparedness',
+    'Monthly national resilience briefings and practical civilian preparedness guidance for UK citizens, published by Universal Defence and Security Solutions.',
+  applicationName: 'UDSS Civilian Preparedness Assistant',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'UDSS Brief',
+    title: 'UDSS Assistant',
   },
   icons: {
     icon: [
@@ -27,16 +27,16 @@ export const metadata: Metadata = {
     apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
   },
   openGraph: {
-    title: 'UDSS Personal Preparedness | The Resilience Brief',
+    title: 'UDSS Civilian Preparedness Assistant | The Resilience Brief',
     description:
-      'Monthly national resilience briefings and practical personal preparedness guidance for UK citizens, published by Universal Defence and Security Solutions.',
+      'Monthly national resilience briefings and practical civilian preparedness guidance for UK citizens, published by Universal Defence and Security Solutions.',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'UDSS Personal Preparedness | The Resilience Brief',
+    title: 'UDSS Civilian Preparedness Assistant | The Resilience Brief',
     description:
-      'Monthly national resilience briefings and practical personal preparedness guidance for UK citizens, published by Universal Defence and Security Solutions.',
+      'Monthly national resilience briefings and practical civilian preparedness guidance for UK citizens, published by Universal Defence and Security Solutions.',
   },
 };
 

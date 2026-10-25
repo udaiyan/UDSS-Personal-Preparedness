@@ -81,7 +81,7 @@ export function AccountRecoveryModal({ isOpen, onClose, progress }: AccountRecov
       `RECOVERY ACCESS LINK:\n` +
       `${recoveryUrl}\n\n` +
       `INSTRUCTIONS:\n` +
-      `1. Keep this card in your fireproof safe, waterproof pouch, or password manager.\n` +
+      `1. Keep this card in your fireproof safe, waterproof pouch, or password manager (if possible laminate cards for wallet storage).\n` +
       `2. No name, email, or passwords are tied to this account.\n` +
       `3. If you switch smartphones or clear browser storage, open the recovery link to restore your checklist and family plans.\n\n` +
       `Universal Defence and Security Solutions Ltd • 33 Cannon St, London EC4M 5SB\n` +
@@ -198,6 +198,10 @@ export function AccountRecoveryModal({ isOpen, onClose, progress }: AccountRecov
                 <Download className="w-3.5 h-3.5" />
                 Download Backup Card (.txt)
               </button>
+            </div>
+
+            <div className="text-[11px] font-mono text-[#666666] pt-1">
+              Physical Card Advisory: If possible laminate cards to preserve recovery keys and offline emergency links against water damage.
             </div>
           </div>
 

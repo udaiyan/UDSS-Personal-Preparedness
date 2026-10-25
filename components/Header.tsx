@@ -62,27 +62,25 @@ export function Header({
           }}
           className="flex items-center gap-3 cursor-pointer group select-none"
         >
-          <div className="relative w-9 h-9 sm:w-10 sm:h-10 shrink-0 rounded bg-[#0E1726] border border-[#354B78] flex items-center justify-center overflow-hidden">
+          <div className="bg-white/95 hover:bg-white px-2.5 py-1 sm:px-3 sm:py-1.5 rounded shadow-xs border border-white/20 transition-all flex items-center justify-center shrink-0">
             <Image
-              src="/icon.svg"
-              alt="UDSS Crest"
-              width={40}
-              height={40}
+              src="/assets/aistudio/Logo_6a1e58a5.webp"
+              alt="Universal Defence & Security Solutions"
+              width={180}
+              height={44}
+              priority
               referrerPolicy="no-referrer"
-              className="object-contain p-0.5"
+              className="h-7 sm:h-8 w-auto object-contain"
             />
           </div>
-          <div>
+          <div className="border-l border-white/20 pl-3 hidden sm:block">
             <div className="flex items-center gap-2">
-              <span className="font-serif text-lg sm:text-xl font-bold tracking-tight text-white group-hover:text-slate-100 transition-colors">
-                UDSS
-              </span>
-              <span className="hidden sm:inline-block text-[11px] font-mono tracking-wider uppercase bg-[#0E1726] text-slate-300 px-1.5 py-0.5 border border-[#354B78]">
+              <span className="text-[10px] font-mono tracking-wider uppercase bg-[#0E1726] text-amber-300 px-1.5 py-0.5 border border-[#354B78] font-bold">
                 CIVIL RESILIENCE
               </span>
             </div>
-            <p className="text-xs text-slate-300 font-sans tracking-wide">
-              Personal Preparedness Brief
+            <p className="text-xs text-slate-200 font-sans tracking-wide mt-0.5">
+              Civilian Preparedness Assistant
             </p>
           </div>
         </div>

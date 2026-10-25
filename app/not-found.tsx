@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { ArrowLeft, ShieldAlert } from 'lucide-react';
 
+export const dynamic = 'force-static';
+
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-[#F5F5F0] text-[#1A1A1A] flex items-center justify-center p-4">

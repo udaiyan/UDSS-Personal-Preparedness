@@ -30,7 +30,7 @@ export function HomeBriefingHero({
               Official UK National Resilience Resource
             </div>
             <h1 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight">
-              Personal Preparedness & Strategic Threat Briefings
+              Civilian Preparedness Assistant &amp; Strategic Threat Briefings
             </h1>
             <p className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
               Published monthly by Universal Defence and Security Solutions (UDSS). Rigorous, actionable intelligence briefings and proportionate household preparedness measures for UK citizens, business leaders, and communities.

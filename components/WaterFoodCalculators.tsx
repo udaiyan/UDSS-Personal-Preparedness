@@ -1,16 +1,22 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Droplets, Utensils, CheckSquare, Square, Info, Sparkles, Shield, AlertCircle } from 'lucide-react';
-import { HouseholdProfile } from '@/types/briefing';
+import { Droplets, Utensils, CheckSquare, Square, Info, Sparkles, Check } from 'lucide-react';
+import { HouseholdProfile, UserProgress } from '@/types/briefing';
+import { togglePantryItem, setAllPantryItems } from '@/lib/storage';
 
 interface WaterFoodCalculatorsProps {
   profile: HouseholdProfile;
+  progress?: UserProgress;
   onOpenProfiler: () => void;
 }
 
-export function WaterFoodCalculators({ profile, onOpenProfiler }: WaterFoodCalculatorsProps) {
-  const [checkedPantryItems, setCheckedPantryItems] = useState<Record<string, boolean>>({});
+export function WaterFoodCalculators({
+  profile,
+  progress,
+  onOpenProfiler,
+}: WaterFoodCalculatorsProps) {
+  const [localChecked, setLocalChecked] = useState<Record<string, boolean>>({});
 
   const adultCount = profile.members.filter((m) => m.category === 'adult').length;
   const seniorCount = profile.members.filter((m) => m.category === 'senior').length;
@@ -30,12 +36,6 @@ export function WaterFoodCalculators({ profile, onOpenProfiler }: WaterFoodCalcu
   const totalWaterLitres = Math.round(
     drinkingLitres + infantDrinkingLitres + sanitationLitres + petLitres
   );
-
-  // Food Calories Calculation (72 hours = 3 days)
-  // Adult/Senior: ~2,000 kcal/day (6,000 kcal / 3 days)
-  // Child: ~1,500 kcal/day (4,500 kcal / 3 days)
-  // Infant: 72h formula supply
-  const totalCalories = (adultCount + seniorCount) * 6000 + childCount * 4500;
 
   // Practical Pantry Targets
   const pantryTargets = [
@@ -95,15 +95,35 @@ export function WaterFoodCalculators({ profile, onOpenProfiler }: WaterFoodCalcu
     });
   }
 
-  const togglePantry = (id: string) => {
-    setCheckedPantryItems((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
+  const checkedPantryItems = progress?.pantryChecklist ?? localChecked;
+
+  const handleToggle = (id: string) => {
+    if (progress) {
+      togglePantryItem(id);
+    } else {
+      setLocalChecked((prev) => ({
+        ...prev,
+        [id]: !prev[id],
+      }));
+    }
   };
 
-  const checkedCount = Object.values(checkedPantryItems).filter(Boolean).length;
+  const handleToggleAll = (targetValue: boolean) => {
+    const allIds = pantryTargets.map((t) => t.id);
+    if (progress) {
+      setAllPantryItems(allIds, targetValue);
+    } else {
+      const next: Record<string, boolean> = {};
+      allIds.forEach((id) => {
+        next[id] = targetValue;
+      });
+      setLocalChecked(next);
+    }
+  };
+
+  const checkedCount = pantryTargets.filter((item) => !!checkedPantryItems[item.id]).length;
   const totalPantryCount = pantryTargets.length;
+  const progressPercent = Math.round((checkedCount / totalPantryCount) * 100);
 
   return (
     <section className="space-y-6">
@@ -124,79 +144,87 @@ export function WaterFoodCalculators({ profile, onOpenProfiler }: WaterFoodCalcu
         </button>
       </div>
 
+      <p className="text-xs sm:text-sm text-[#4A4A4A] leading-relaxed max-w-3xl">
+        Calculated against UK civil contingency planning assumptions. During severe disruptions to the National Grid or municipal water supplies, commercial logistics and supermarket deliveries fail within 48 to 72 hours.
+      </p>
+
+      {/* Main Calculation Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Water Calculation Card */}
-        <div className="bg-white border border-[#D0D0D0] p-6 shadow-xs flex flex-col justify-between">
+        {/* Card 1: Water Requirement */}
+        <div className="bg-white border border-[#D0D0D0] p-5 shadow-xs flex flex-col justify-between">
           <div className="space-y-4">
-            <div className="flex items-center justify-between border-b border-[#D0D0D0] pb-3">
-              <div className="flex items-center gap-2">
-                <Droplets className="w-5 h-5 text-blue-700" />
-                <h3 className="font-serif text-lg font-bold text-[#1B2A4A]">
-                  Potable Water Target
-                </h3>
-              </div>
-              <span className="text-xs font-mono font-bold bg-blue-50 text-blue-900 px-2 py-0.5 border border-blue-200">
-                72-Hour Baseline
+            <div className="flex items-center justify-between border-b border-[#EFEFEA] pb-3">
+              <span className="text-xs font-mono tracking-wider uppercase text-[#1B2A4A] font-semibold flex items-center gap-1.5">
+                <Droplets className="w-4 h-4 text-sky-700" />
+                Mains Water Outage Baseline
+              </span>
+              <span className="text-[11px] font-mono text-[#666666]">
+                3L / person / day
               </span>
             </div>
 
-            <div className="p-4 bg-[#F5F8FC] border-l-4 border-blue-700 space-y-1">
-              <div className="text-xs text-blue-950 uppercase font-mono tracking-wider font-semibold">
-                Household Total Volume:
+            <div className="space-y-1">
+              <div className="text-[11px] font-mono uppercase tracking-wider text-[#666666]">
+                Total Potable Reserve:
               </div>
               <div className="font-serif text-3xl font-bold text-[#1B2A4A]">
                 {totalWaterLitres} Litres
               </div>
               <p className="text-xs text-[#4A4A4A]">
-                Minimum volume required to sustain {humanCount} {humanCount === 1 ? 'person' : 'people'}
-                {petCount > 0 ? ` and ${petCount} pets` : ''} through 3 days of mains failure.
+                Minimum 72-hour stockpile for {humanCount} person{humanCount !== 1 ? 's' : ''}{petCount > 0 ? ` and ${petCount} pet${petCount !== 1 ? 's' : ''}` : ''}.
               </p>
             </div>
 
-            {/* Breakdown */}
-            <div className="space-y-2 text-xs text-[#333333]">
-              <div className="flex justify-between py-1 border-b border-[#EFEFEA]">
-                <span>Drinking &amp; Direct Hydration:</span>
-                <strong className="font-mono">{drinkingLitres + infantDrinkingLitres} Litres</strong>
+            <div className="space-y-2 text-xs text-[#333333] pt-2 border-t border-[#EFEFEA]">
+              <div className="flex justify-between">
+                <span>Drinking baseline (2L/day):</span>
+                <span className="font-mono font-semibold">{drinkingLitres} L</span>
               </div>
-              <div className="flex justify-between py-1 border-b border-[#EFEFEA]">
-                <span>Basic Hygiene &amp; Cooking:</span>
-                <strong className="font-mono">{sanitationLitres} Litres</strong>
+              {infantCount > 0 && (
+                <div className="flex justify-between text-purple-950 bg-purple-50 px-1.5 py-0.5">
+                  <span className="flex items-center gap-1">
+                    <Sparkles className="w-3 h-3 text-purple-700" />
+                    Infant sterile feed supply:
+                  </span>
+                  <span className="font-mono font-semibold">{infantDrinkingLitres} L</span>
+                </div>
+              )}
+              <div className="flex justify-between">
+                <span>Essential food prep &amp; hand hygiene (1L/day):</span>
+                <span className="font-mono font-semibold">{sanitationLitres} L</span>
               </div>
               {petCount > 0 && (
-                <div className="flex justify-between py-1 border-b border-[#EFEFEA]">
-                  <span>Domestic Pets Hydration:</span>
-                  <strong className="font-mono">{petLitres} Litres</strong>
+                <div className="flex justify-between text-amber-950 bg-amber-50 px-1.5 py-0.5">
+                  <span>Pet hydration ({petCount} animal{petCount !== 1 ? 's' : ''}):</span>
+                  <span className="font-mono font-semibold">{petLitres} L</span>
                 </div>
               )}
             </div>
           </div>
 
           <div className="mt-4 pt-3 border-t border-[#D0D0D0] text-[11px] text-[#4A4A4A] flex items-start gap-1.5">
-            <Info className="w-3.5 h-3.5 text-blue-700 shrink-0 mt-0.5" />
+            <Info className="w-3.5 h-3.5 text-sky-700 shrink-0 mt-0.5" />
             <span>
-              Tip: Keep 6 x 5-litre supermarket water bottles stored under stairs or behind utility cupboards for an effortless 30L buffer.
+              Tip: Keep sealed commercial water bottles in cool, dark spots. Do not use previously opened milk cartons.
             </span>
           </div>
         </div>
 
-        {/* Food Pantry Target Card */}
-        <div className="bg-white border border-[#D0D0D0] p-6 shadow-xs flex flex-col justify-between">
+        {/* Card 2: Food & Calories Requirement */}
+        <div className="bg-white border border-[#D0D0D0] p-5 shadow-xs flex flex-col justify-between">
           <div className="space-y-4">
-            <div className="flex items-center justify-between border-b border-[#D0D0D0] pb-3">
-              <div className="flex items-center gap-2">
-                <Utensils className="w-5 h-5 text-amber-700" />
-                <h3 className="font-serif text-lg font-bold text-[#1B2A4A]">
-                  Non-Perishable Food Pantry
-                </h3>
-              </div>
-              <span className="text-xs font-mono font-bold bg-amber-50 text-amber-900 px-2 py-0.5 border border-amber-200">
-                {totalCalories.toLocaleString()} kcal target
+            <div className="flex items-center justify-between border-b border-[#EFEFEA] pb-3">
+              <span className="text-xs font-mono tracking-wider uppercase text-[#1B2A4A] font-semibold flex items-center gap-1.5">
+                <Utensils className="w-4 h-4 text-amber-700" />
+                Emergency Food Storage
+              </span>
+              <span className="text-[11px] font-mono text-[#666666]">
+                Non-perishable
               </span>
             </div>
 
-            <div className="p-4 bg-[#FBF9F5] border-l-4 border-amber-700 space-y-1">
-              <div className="text-xs text-amber-950 uppercase font-mono tracking-wider font-semibold">
+            <div className="space-y-1">
+              <div className="text-[11px] font-mono uppercase tracking-wider text-[#666666]">
                 Caloric Cushion:
               </div>
               <div className="font-serif text-3xl font-bold text-[#1B2A4A]">
@@ -210,12 +238,12 @@ export function WaterFoodCalculators({ profile, onOpenProfiler }: WaterFoodCalcu
             <div className="space-y-1 text-xs text-[#333333]">
               <div className="flex items-center justify-between font-mono text-[11px] text-[#666666] pb-1">
                 <span>Pantry Acquisition Status:</span>
-                <span className="font-bold text-[#1B2A4A]">{checkedCount} / {totalPantryCount} Secured</span>
+                <span className="font-bold text-[#1B2A4A]">{checkedCount} / {totalPantryCount} Secured ({progressPercent}%)</span>
               </div>
               <div className="h-2 w-full bg-[#EAEAE2] overflow-hidden border border-[#D0D0D0]">
                 <div
-                  className="h-full bg-amber-700 transition-all"
-                  style={{ width: `${(checkedCount / totalPantryCount) * 100}%` }}
+                  className="h-full bg-emerald-700 transition-all duration-300"
+                  style={{ width: `${progressPercent}%` }}
                 />
               </div>
             </div>
@@ -231,13 +259,36 @@ export function WaterFoodCalculators({ profile, onOpenProfiler }: WaterFoodCalcu
       </div>
 
       {/* Interactive Pantry Shopping Checklist */}
-      <div className="bg-white border border-[#D0D0D0] p-5 shadow-xs space-y-3">
-        <h3 className="font-serif text-base font-bold text-[#1B2A4A] flex items-center justify-between">
-          <span>72-Hour Grocery Checklist for Your Household</span>
-          <span className="text-xs font-sans font-normal text-[#4A4A4A]">
-            Tick off as items are secured in your larder
-          </span>
-        </h3>
+      <div className="bg-white border border-[#D0D0D0] p-5 shadow-xs space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#EFEFEA] pb-3">
+          <div>
+            <h3 className="font-serif text-base font-bold text-[#1B2A4A] flex items-center gap-2">
+              <span>72-Hour Grocery Checklist for Your Household</span>
+              {checkedCount === totalPantryCount && totalPantryCount > 0 && (
+                <span className="inline-flex items-center gap-1 text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 border border-emerald-300">
+                  <Check className="w-3.5 h-3.5 text-emerald-700" />
+                  All Secured
+                </span>
+              )}
+            </h3>
+            <p className="text-xs text-[#4A4A4A] mt-0.5">
+              Click anywhere on a measure to check it off as items are secured in your domestic pantry
+            </p>
+          </div>
+
+          <div className="flex items-center gap-3 shrink-0">
+            <span className="text-xs font-mono font-bold text-[#1B2A4A] bg-[#FAF9F5] px-2.5 py-1 border border-[#D0D0D0]">
+              {checkedCount} / {totalPantryCount} Secured
+            </span>
+            <button
+              type="button"
+              onClick={() => handleToggleAll(checkedCount < totalPantryCount)}
+              className="text-xs font-semibold text-[#1B2A4A] hover:text-[#8B1A1A] hover:underline font-mono cursor-pointer"
+            >
+              {checkedCount === totalPantryCount ? 'Clear all' : 'Mark all secured'}
+            </button>
+          </div>
+        </div>
 
         <div className="divide-y divide-[#EFEFEA] border border-[#EFEFEA]">
           {pantryTargets.map((item) => {
@@ -245,33 +296,54 @@ export function WaterFoodCalculators({ profile, onOpenProfiler }: WaterFoodCalcu
             return (
               <div
                 key={item.id}
-                onClick={() => togglePantry(item.id)}
-                className={`p-3 flex items-start gap-3 cursor-pointer transition-colors ${
-                  isChecked ? 'bg-[#F9FAF8]' : 'hover:bg-[#FAF9F5]'
+                role="checkbox"
+                aria-checked={isChecked}
+                tabIndex={0}
+                onClick={() => handleToggle(item.id)}
+                onKeyDown={(e) => {
+                  if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    handleToggle(item.id);
+                  }
+                }}
+                className={`p-3.5 flex items-start gap-3.5 cursor-pointer select-none transition-colors ${
+                  isChecked
+                    ? 'bg-emerald-50/50 hover:bg-emerald-50/70'
+                    : 'hover:bg-[#FAF9F5]'
                 }`}
               >
-                <button
-                  type="button"
-                  className="mt-0.5 text-[#1B2A4A] focus:outline-none shrink-0"
-                  aria-label={isChecked ? `Unmark ${item.label}` : `Mark ${item.label}`}
+                <div
+                  className="mt-0.5 text-[#1B2A4A] shrink-0"
+                  aria-hidden="true"
                 >
                   {isChecked ? (
-                    <CheckSquare className="w-5 h-5 text-emerald-700 fill-emerald-50" />
+                    <CheckSquare className="w-5 h-5 text-emerald-700 fill-emerald-100" />
                   ) : (
-                    <Square className="w-5 h-5 text-[#4A4A4A]" />
+                    <Square className="w-5 h-5 text-[#666666] hover:text-[#1B2A4A]" />
                   )}
-                </button>
+                </div>
 
                 <div className="flex-1 text-xs">
-                  <div className="flex items-center gap-2 mb-0.5">
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-[#666666] bg-[#EFEFEA] px-1.5 py-0.2">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-[#666666] bg-[#EFEFEA] px-1.5 py-0.5">
                       {item.category}
                     </span>
+                    {isChecked && (
+                      <span className="text-[10px] font-mono text-emerald-800 font-bold uppercase tracking-wide">
+                        • Secured in pantry
+                      </span>
+                    )}
                   </div>
-                  <strong className={`font-semibold text-sm block leading-snug ${isChecked ? 'text-[#333333]' : 'text-[#1B2A4A]'}`}>
+                  <strong
+                    className={`font-semibold text-sm block leading-snug transition-colors ${
+                      isChecked
+                        ? 'text-emerald-950 line-through decoration-emerald-700/40'
+                        : 'text-[#1B2A4A]'
+                    }`}
+                  >
                     {item.label}
                   </strong>
-                  <p className="text-[#666666] mt-0.5 leading-relaxed">
+                  <p className={`mt-0.5 leading-relaxed ${isChecked ? 'text-emerald-900/80' : 'text-[#666666]'}`}>
                     {item.detail}
                   </p>
                 </div>

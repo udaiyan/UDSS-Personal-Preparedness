@@ -69,6 +69,19 @@ export default function HomePage() {
 
   const currentBriefing = briefings[0]; // October 2026 - Current
 
+  const handleOpenChecklist = () => {
+    setSelectedBriefing(null);
+    setActiveTab('checklist');
+    setTimeout(() => {
+      const el = document.getElementById('household-measures-section');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        window.scrollTo({ top: 350, behavior: 'smooth' });
+      }
+    }, 60);
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[#F5F5F0]">
       {/* Persistent Official Header */}
@@ -108,18 +121,12 @@ export default function HomePage() {
                   onOpenShareModal={() => setIsShareModalOpen(true)}
                   onOpenRecoveryModal={() => setIsRecoveryModalOpen(true)}
                   onOpenBuddiesModal={() => setIsBuddiesModalOpen(true)}
-                  onOpenChecklist={() => {
-                    setActiveTab('checklist');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
+                  onOpenChecklist={handleOpenChecklist}
                 />
 
                 {/* 2. Introductory Video Address by Sir Richard Barrons */}
                 <SirRichardVideoIntro
-                  onStartBasicPreparedness={() => {
-                    setActiveTab('checklist');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
+                  onStartBasicPreparedness={handleOpenChecklist}
                 />
 
                 {/* 3. Hero with Current Briefing */}
@@ -127,10 +134,7 @@ export default function HomePage() {
                   currentBriefing={currentBriefing}
                   progress={progress}
                   onReadBriefing={handleReadBriefing}
-                  onOpenChecklist={() => {
-                    setActiveTab('checklist');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
+                  onOpenChecklist={handleOpenChecklist}
                 />
 
                 {/* 4. Household Logistics Quick Banner */}
@@ -202,7 +206,7 @@ export default function HomePage() {
                   onOpenShareModal={() => setIsShareModalOpen(true)}
                   onOpenRecoveryModal={() => setIsRecoveryModalOpen(true)}
                   onOpenBuddiesModal={() => setIsBuddiesModalOpen(true)}
-                  onOpenChecklist={() => {}}
+                  onOpenChecklist={handleOpenChecklist}
                 />
 
                 <ChecklistSection
@@ -217,6 +221,7 @@ export default function HomePage() {
               <div className="space-y-10">
                 <WaterFoodCalculators
                   profile={progress.householdProfile}
+                  progress={progress}
                   onOpenProfiler={() => setIsProfilerOpen(true)}
                 />
 

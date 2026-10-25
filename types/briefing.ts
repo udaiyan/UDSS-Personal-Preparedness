@@ -44,6 +44,8 @@ export interface ChecklistItem {
   priority: 'Essential' | 'High' | 'Recommended' | 'Optional';
   tip: string;
   buyingGuidance?: string;
+  govStandard?: boolean;
+  govSection?: string;
 }
 
 export interface HouseholdMember {
@@ -139,4 +141,5 @@ export interface UserProgress {
   utilityPlan: UtilityShutoffPlan;
   answeredQuestions: Record<string, { selectedIndex: number; isCorrect: boolean; timestamp: string }>;
   readBriefingIds: string[];
+  pantryChecklist?: Record<string, boolean>;
 }

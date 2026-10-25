@@ -3,10 +3,10 @@ import type { MetadataRoute } from 'next';
 export default function manifest(): MetadataRoute.Manifest {
   return {
     id: '/',
-    name: 'UDSS Personal Preparedness',
-    short_name: 'UDSS Brief',
+    name: 'UDSS Civilian Preparedness Assistant',
+    short_name: 'Civilian Prep',
     description:
-      'Monthly national resilience briefings and practical personal preparedness guidance for UK citizens, published by Universal Defence and Security Solutions.',
+      'Monthly national resilience briefings and practical civilian preparedness guidance for UK citizens, published by Universal Defence and Security Solutions.',
     start_url: '/',
     scope: '/',
     display: 'standalone',

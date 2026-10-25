@@ -2,101 +2,189 @@
   {
     "id": "chk-basic-water",
     "tier": "basic",
-    "category": "Water & Sustenance",
-    "title": "Store three days of drinking water",
-    "description": "Maintain at least 3 litres of potable water per person per day for 72 hours. Store in a cool, dark cupboard away from direct sunlight and household chemicals.",
+    "category": "Water",
+    "title": "Bottled water for 3 days (3 litres per person per day)",
+    "description": "Maintain at least 3 litres of bottled potable water per person per day for drinking (9 litres per person for 3 days). More is needed for basic food rehydration, cooking, and hygiene.",
     "priority": "Essential",
-    "tip": "Commercially sealed bottled water retains potable quality for years if unopened. Keep a manual plastic siphon or tap for large bottles."
+    "tip": "Commercially sealed bottled water retains potable quality for years if unopened. Keep large 5L bottles for home and 2L/500ml bottles for grab bags.",
+    "govStandard": true,
+    "govSection": "Water"
   },
   {
     "id": "chk-basic-food",
     "tier": "basic",
-    "category": "Water & Sustenance",
-    "title": "Maintain a 72-hour non-perishable rolling pantry",
-    "description": "Stock 3 to 5 days of ambient, shelf-stable foods that your household normally consumes: canned proteins, beans, vegetables, pasta, rice, and dried fruit. Check expiry dates biannually.",
+    "category": "Food",
+    "title": "Non-perishable food for 3 days (ambient rolling pantry)",
+    "description": "Stock 3 days of food with a long shelf life that doesn't need refrigeration or cooking: tinned meat, fish, beans, vegetables, dried fruit and nuts, pasta, and rolled oats. It's best to buy food you'd usually eat.",
     "priority": "Essential",
-    "tip": "Ensure you possess a heavy-duty manual tin opener. Without one, tinned provisions are inaccessible during electrical outages."
+    "tip": "Ensure you possess a manual tin opener. Without one, tinned provisions are inaccessible during electrical outages.",
+    "govStandard": true,
+    "govSection": "Food"
   },
   {
     "id": "chk-basic-light",
     "tier": "basic",
-    "category": "Power & Lighting",
-    "title": "Store battery LED lanterns and torches",
-    "description": "Place reliable battery-powered LED lanterns or head torches on each floor of your home, plus sealed spare alkaline batteries. Strictly avoid open flames or candles due to documented fire risks.",
+    "category": "Light and warmth",
+    "title": "Torch (and spare batteries) & LED lanterns",
+    "description": "Place reliable battery-powered LED torches, head torches, and lanterns on each floor of your home, plus sealed spare alkaline batteries. Strictly avoid candles or open flames due to documented fire risks.",
     "priority": "Essential",
-    "tip": "Head torches leave both hands free for cooking, attending to family members, or examining utility stopcocks."
+    "tip": "Head torches leave both hands free for cooking, attending to family members, or examining utility stopcocks.",
+    "govStandard": true,
+    "govSection": "Light and warmth"
   },
   {
-    "id": "chk-basic-powerbank",
+    "id": "chk-basic-warmth",
     "tier": "basic",
-    "category": "Power & Lighting",
-    "title": "Keep portable power banks fully charged",
-    "description": "Retain at least two high-capacity power banks (10,000 to 20,000 mAh) charged at all times to recharge mobile phones and medical diagnostic tools during regional blackouts.",
-    "priority": "High",
-    "tip": "Top up power banks on the first weekend of every month to counteract natural chemical self-discharge."
+    "category": "Light and warmth",
+    "title": "Blankets, sleeping bags and warm clothing",
+    "description": "Keep warm blankets, thermal layers, 3-season sleeping bags, wool hats, and thick socks readily accessible for each household member in case of winter power cuts or central heating boiler collapse.",
+    "priority": "Essential",
+    "tip": "Dress in multiple loose, warm layers rather than one thick garment. Keep emergency thermal foil blankets in your grab bags.",
+    "govStandard": true,
+    "govSection": "Light and warmth"
   },
   {
     "id": "chk-basic-radio",
     "tier": "basic",
-    "category": "Communications",
-    "title": "Battery-powered or wind-up broadcast radio",
-    "description": "Maintain an analogue FM/AM or DAB radio with spare batteries. National broadcasters (notably BBC Radio 4 on 104 FM / 198 LW) are the statutory conduit for civil contingency directives.",
+    "category": "Communication and information",
+    "title": "FM radio (battery / wind-up)",
+    "description": "Maintain an analogue FM/AM or wind-up broadcast radio with spare batteries. National broadcasters (notably BBC Radio 4 on 92.4–94.6 MHz FM) are the statutory conduit for civil contingency emergency directives when cellular masts lose power.",
     "priority": "Essential",
-    "tip": "Test reception of BBC Radio 4 and local BBC stations twice per year to verify frequency familiarity."
+    "tip": "Test reception of BBC Radio 4 and local BBC stations twice per year to verify frequency familiarity.",
+    "govStandard": true,
+    "govSection": "Communication and information"
   },
   {
-    "id": "chk-basic-meds",
+    "id": "chk-basic-powerbank",
     "tier": "basic",
-    "category": "Medical & Health",
-    "title": "Fourteen-day buffer of essential prescription medicine",
-    "description": "Ensure family members dependent on critical daily prescription medicines maintain a rolling 14 to 30 day supply, reordering repeat prescriptions well before final doses.",
-    "priority": "Essential",
-    "tip": "Store a printed copy of repeat prescription slips listing specific medication names, dosages, and GP surgery contacts."
-  },
-  {
-    "id": "chk-basic-firstaid",
-    "tier": "basic",
-    "category": "Medical & Health",
-    "title": "Comprehensive domestic first aid kit",
-    "description": "Equip your home with sterile dressings, adhesive bandages, antiseptic wipes, burn dressings, medical tape, trauma shears, and pain relief medication (paracetamol, ibuprofen).",
-    "priority": "Essential",
-    "tip": "Keep the first aid kit in a central location known to all adults and older children."
+    "category": "Communication and information",
+    "title": "Charged portable power bank",
+    "description": "Retain at least one high-capacity portable power bank (10,000 to 20,000 mAh) fully charged at all times to recharge mobile phones, torches, or medical equipment during power cuts.",
+    "priority": "High",
+    "tip": "Top up power banks on the first weekend of every month to counteract natural chemical self-discharge.",
+    "govStandard": true,
+    "govSection": "Communication and information"
   },
   {
     "id": "chk-basic-cash",
     "tier": "basic",
-    "category": "Financial & Records",
-    "title": "Domestic cash reserve in low denominations",
-    "description": "Keep a modest reserve of physical cash (£5, £10, and £20 banknotes) in a secure, fire-resistant lockbox at home for situations where electronic card terminals fail.",
+    "category": "Money and documents",
+    "title": "Cash (mix of coins and notes) & payment cards",
+    "description": "Keep physical cash in a mix of small banknotes (£5, £10, £20) and coins for vending/payphones/convenience shops, as electronic card terminals fail during power cuts or telecom throttles. Also retain physical payment cards with chip & PIN.",
     "priority": "High",
-    "tip": "Avoid £50 notes as convenience stores and pharmacies may be unable to provide change during network outages."
+    "tip": "Avoid £50 notes as convenience stores and pharmacies may be unable to provide change during network outages.",
+    "govStandard": true,
+    "govSection": "Money and documents"
   },
   {
     "id": "chk-basic-docs",
     "tier": "basic",
-    "category": "Financial & Records",
-    "title": "Offline copies of vital records in waterproof pouch",
-    "description": "Store certified copies of passports, birth certificates, insurance policies, property deeds, and medical summaries in a portable waterproof document pouch.",
+    "category": "Money and documents",
+    "title": "Copies of IDs and vital documents",
+    "description": "Store certified physical photocopies of passports, photo driving licences, birth certificates, home/car insurance policies, and essential contracts in a portable waterproof pouch.",
     "priority": "Essential",
-    "tip": "Include an unencrypted USB drive with high-resolution digital scans stored inside the pouch."
+    "tip": "Include an unencrypted USB memory drive with high-resolution digital scans stored inside the pouch.",
+    "govStandard": true,
+    "govSection": "Money and documents"
   },
   {
     "id": "chk-basic-contacts",
     "tier": "basic",
-    "category": "Evacuation & Planning",
-    "title": "Printed household emergency contact & meeting plan",
-    "description": "Carry a laminated or durable card listing immediate family mobile numbers, an agreed out-of-area relative contact point, primary and secondary meeting points, and trigger rules.",
+    "category": "Money and documents",
+    "title": "Important phone numbers & medical information card",
+    "description": "Carry a durable card listing immediate family mobile numbers, an agreed out-of-area relative contact point, primary meeting points, regular medication and dosages. If possible laminate cards.",
     "priority": "Essential",
-    "tip": "When cellular towers saturate, out-of-area trunk lines and SMS text messages succeed when local voice calls fail."
+    "tip": "When cellular towers saturate, out-of-area trunk lines and SMS text messages succeed when local voice calls fail. If possible laminate cards so they remain legible in wet weather.",
+    "govStandard": true,
+    "govSection": "Money and documents"
+  },
+  {
+    "id": "chk-basic-firstaid",
+    "tier": "basic",
+    "category": "Medical and health",
+    "title": "First aid items & basic medicine kit",
+    "description": "Equip your home with sterile dressings, adhesive bandages/plasters, antiseptic wipes, burn dressings, medical tape, trauma shears, and non-prescription pain relief medication (paracetamol, ibuprofen, antihistamines).",
+    "priority": "Essential",
+    "tip": "Keep the first aid kit in a central location known to all adults and older children.",
+    "govStandard": true,
+    "govSection": "Medical and health"
+  },
+  {
+    "id": "chk-basic-meds",
+    "tier": "basic",
+    "category": "Medical and health",
+    "title": "Essential medication and medical supplies",
+    "description": "Ensure family members dependent on critical daily prescription medicines maintain a rolling 14 to 30 day supply, reordering repeat prescriptions well before final doses with paper dosage notes.",
+    "priority": "Essential",
+    "tip": "Store a printed copy of repeat prescription slips listing specific medication names, dosages, and GP surgery contacts.",
+    "govStandard": true,
+    "govSection": "Medical and health"
+  },
+  {
+    "id": "chk-basic-hygiene",
+    "tier": "basic",
+    "category": "Hygiene",
+    "title": "Hand sanitiser, wet wipes, hygiene & bathroom products",
+    "description": "Stock antibacterial hand sanitiser, wet wipes, toilet tissue, toothbrushes, toothpaste, bar soap, feminine sanitary products, and heavy-duty refuse sacks for household hygiene when mains water pressure drops.",
+    "priority": "Essential",
+    "tip": "Wet wipes and alcohol hand rub provide effective personal hygiene without consuming limited drinking water supplies.",
+    "govStandard": true,
+    "govSection": "Hygiene"
+  },
+  {
+    "id": "chk-basic-baby",
+    "tier": "basic",
+    "category": "Baby products",
+    "title": "Baby formula (ready-to-feed), nappies & wipes",
+    "description": "For households with infants: ready-made or 'ready-to-feed' liquid formula bottles are best, as you may not be able to boil water safely to make up powdered formula. Keep a 3-day supply of nappies, wipes, and nappy sacks. (Mark as Not Applicable if household has no infants).",
+    "priority": "Essential",
+    "tip": "Powdered formula demands boiled potable water at 70°C to kill bacteria; liquid formula bottles remain completely sterile and ready at room temperature without power.",
+    "govStandard": true,
+    "govSection": "Baby products"
+  },
+  {
+    "id": "chk-basic-pet",
+    "tier": "basic",
+    "category": "Pet products",
+    "title": "Pet food and bottled water for 3 days",
+    "description": "For households with animals: maintain 3 to 5 days of wet and dry pet food, dedicated pet drinking water (1.5 litres per day per medium animal), bowls, medication, and pet waste bags. (Mark as Not Applicable if household has no pets).",
+    "priority": "High",
+    "tip": "Pets must not consume unboiled or contaminated floodwater; allocate their water reserve alongside human stores.",
+    "govStandard": true,
+    "govSection": "Pet products"
   },
   {
     "id": "chk-basic-shutoffs",
     "tier": "basic",
-    "category": "Evacuation & Planning",
-    "title": "Locate and tag household utility shutoffs",
-    "description": "Ensure all adult household members know the precise location of the internal stopcock (water), gas meter isolation lever, and electricity consumer unit (main breaker).",
+    "category": "Home Safety",
+    "title": "Locate and tag household utility shutoffs (Stopcock, Breakers, Gas)",
+    "description": "Ensure all adult household members know the precise location of the internal stopcock (water), gas meter isolation lever, and electricity consumer unit (main breaker). If possible laminate cards and affix beside meters.",
     "priority": "Essential",
-    "tip": "Affix a durable tag to the water stopcock and test turning it quarterly to prevent limescale seizure."
+    "tip": "Affix a durable tag to the water stopcock and test turning it quarterly to prevent limescale seizure.",
+    "govStandard": true,
+    "govSection": "Home Safety"
+  },
+  {
+    "id": "chk-basic-community",
+    "tier": "basic",
+    "category": "Community & Mutual Aid",
+    "title": "Connect with your community & swap contact details",
+    "description": "Talk to your neighbours about what extra support you might be able to share during an outage, and swap contact details. Check on elderly or vulnerable residents nearby, and help by photocopying or printing important documents for them.",
+    "priority": "High",
+    "tip": "Community mutual aid is often the fastest support available during localized infrastructure outages. Donate surplus items if you have extra provisions.",
+    "govStandard": true,
+    "govSection": "Community"
+  },
+  {
+    "id": "chk-basic-expiry-review",
+    "tier": "basic",
+    "category": "Maintenance & Planning",
+    "title": "Six-month kit check & expiry date review",
+    "description": "Set a recurring reminder every six months to check expiry dates on food, water, and medicines, swap out items that need replacing, and update your kit if your household's needs have changed.",
+    "priority": "High",
+    "tip": "Align your biannual kit check with the daylight saving clock changes in spring and autumn.",
+    "govStandard": true,
+    "govSection": "Maintenance"
   },
   {
     "id": "chk-basic-fuel",
@@ -105,7 +193,9 @@
     "title": "Maintain vehicle fuel tank at least half-full",
     "description": "Adopt the discipline of refuelling when your fuel tank dips to half capacity. Petrol forecourt pumps rely on grid electricity; during a blackout, stations cannot dispense fuel.",
     "priority": "Recommended",
-    "tip": "In winter, keep a warm blanket, sturdy footwear, and a bottle of water in the boot."
+    "tip": "In winter, keep a warm blanket, sturdy footwear, and a bottle of water in the boot.",
+    "govStandard": true,
+    "govSection": "Evacuation & Planning"
   },
   {
     "id": "chk-adv-food",
