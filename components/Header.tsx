@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Menu, X, BookOpen, CheckSquare, Info, Briefcase, Droplets, Backpack, FileText } from 'lucide-react';
+import { Menu, X, BookOpen, CheckSquare, Info, Briefcase, Droplets, Backpack, FileText, ShieldCheck } from 'lucide-react';
 import { PWAInstallButton } from './PWAInstallButton';
 
 interface HeaderProps {
@@ -10,6 +10,7 @@ interface HeaderProps {
   setActiveTab: (tab: 'home' | 'checklist' | 'logistics' | 'about') => void;
   onOpenCorporateModal: () => void;
   onOpenEmergencyPlan: () => void;
+  onOpenGDPRModal?: () => void;
 }
 
 export function Header({
@@ -17,6 +18,7 @@ export function Header({
   setActiveTab,
   onOpenCorporateModal,
   onOpenEmergencyPlan,
+  onOpenGDPRModal,
 }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -46,8 +48,21 @@ export function Header({
               className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-200 hover:text-white transition-colors underline decoration-slate-400 underline-offset-2"
             >
               <Briefcase className="w-3 h-3 text-[#D0D0D0]" />
-              Corporate Enquiries: Laurence Postgate
+              Corporate Enquiries
             </button>
+            {onOpenGDPRModal && (
+              <>
+                <span className="hidden sm:inline text-slate-500">|</span>
+                <button
+                  onClick={onOpenGDPRModal}
+                  className="hidden sm:inline-flex items-center gap-1 text-[11px] text-slate-300 hover:text-white transition-colors"
+                  title="View UK & EU GDPR compliance charter and exercise data subject rights"
+                >
+                  <ShieldCheck className="w-3 h-3 text-emerald-400" />
+                  GDPR &amp; Privacy
+                </button>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -245,6 +260,19 @@ export function Header({
             <Info className="w-4 h-4 text-[#D0D0D0]" />
             About UDSS &amp; Leadership
           </button>
+
+          {onOpenGDPRModal && (
+            <button
+              onClick={() => {
+                onOpenGDPRModal();
+                setMobileMenuOpen(false);
+              }}
+              className="w-full text-left px-3 py-2 text-xs font-semibold tracking-wider uppercase rounded transition-colors flex items-center gap-2 text-slate-300 hover:bg-[#1B2A4A]/50"
+            >
+              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              GDPR &amp; Privacy Charter
+            </button>
+          )}
 
           <div className="pt-2 border-t border-[#253556]">
             <button

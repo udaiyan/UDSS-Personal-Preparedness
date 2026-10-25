@@ -17,6 +17,8 @@ import { ShareStatusModal } from '@/components/ShareStatusModal';
 import { AccountabilityBuddiesModal } from '@/components/AccountabilityBuddiesModal';
 import { AccountRecoveryModal } from '@/components/AccountRecoveryModal';
 import { EmergencyPlanModal } from '@/components/EmergencyPlanModal';
+import { GDPRPrivacyModal } from '@/components/GDPRPrivacyModal';
+import { GDPRConsentBanner } from '@/components/GDPRConsentBanner';
 import { Footer } from '@/components/Footer';
 
 import { Briefing, ChecklistItem } from '@/types/briefing';
@@ -40,10 +42,11 @@ export default function HomePage() {
   const [isBuddiesModalOpen, setIsBuddiesModalOpen] = useState<boolean>(false);
   const [isEmergencyPlanOpen, setIsEmergencyPlanOpen] = useState<boolean>(false);
   const [isCorporateModalOpen, setIsCorporateModalOpen] = useState<boolean>(false);
+  const [isGDPRModalOpen, setIsGDPRModalOpen] = useState<boolean>(false);
 
   const progress = useUserProgress();
 
-  // Check URL query for recovery token e.g. /?recover=xxxx
+  // Check URL query for recovery token e.g. /?recover=xxxx or ?gdpr=true
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const params = new URLSearchParams(window.location.search);
@@ -54,6 +57,13 @@ export default function HomePage() {
           setIsRecoveryModalOpen(true);
         }
       });
+    }
+
+    if (params.get('gdpr') === 'true' || params.get('privacy') === 'true') {
+      const timer = setTimeout(() => {
+        setIsGDPRModalOpen(true);
+      }, 50);
+      return () => clearTimeout(timer);
     }
   }, []);
 
@@ -94,6 +104,7 @@ export default function HomePage() {
         }}
         onOpenCorporateModal={() => setIsCorporateModalOpen(true)}
         onOpenEmergencyPlan={() => setIsEmergencyPlanOpen(true)}
+        onOpenGDPRModal={() => setIsGDPRModalOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -249,6 +260,7 @@ export default function HomePage() {
           setActiveTab(tab);
           setSelectedBriefing(null);
         }}
+        onOpenGDPRModal={() => setIsGDPRModalOpen(true)}
       />
 
       {/* Modals */}
@@ -287,6 +299,23 @@ export default function HomePage() {
         isOpen={isCorporateModalOpen}
         onClose={() => setIsCorporateModalOpen(false)}
       />
+
+      <GDPRPrivacyModal
+        isOpen={isGDPRModalOpen}
+        onClose={() => setIsGDPRModalOpen(false)}
+        progress={progress}
+        onOpenProfiler={() => {
+          setIsGDPRModalOpen(false);
+          setIsProfilerOpen(true);
+        }}
+        onOpenEmergencyPlan={() => {
+          setIsGDPRModalOpen(false);
+          setIsEmergencyPlanOpen(true);
+        }}
+      />
+
+      {/* GDPR Consent & Privacy Notice Banner */}
+      <GDPRConsentBanner onOpenPolicy={() => setIsGDPRModalOpen(true)} />
     </div>
   );
 }

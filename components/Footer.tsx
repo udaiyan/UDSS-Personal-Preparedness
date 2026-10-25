@@ -2,14 +2,16 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { ExternalLink, Shield, Mail, Briefcase, Lock } from 'lucide-react';
+import Link from 'next/link';
+import { ExternalLink, Shield, Mail, Briefcase, Lock, ShieldCheck } from 'lucide-react';
 
 interface FooterProps {
   onOpenCorporateModal: () => void;
   onNavigateTab: (tab: 'home' | 'checklist' | 'about') => void;
+  onOpenGDPRModal?: () => void;
 }
 
-export function Footer({ onOpenCorporateModal, onNavigateTab }: FooterProps) {
+export function Footer({ onOpenCorporateModal, onNavigateTab, onOpenGDPRModal }: FooterProps) {
   return (
     <footer className="mt-16 bg-[#0E1726] text-[#D0D0D0] border-t-4 border-[#1B2A4A]">
       {/* Official Mandatory Disclaimer Banner */}
@@ -96,6 +98,25 @@ export function Footer({ onOpenCorporateModal, onNavigateTab }: FooterProps) {
                   <ExternalLink className="w-3 h-3 text-slate-400" />
                 </a>
               </li>
+              <li>
+                {onOpenGDPRModal ? (
+                  <button
+                    onClick={onOpenGDPRModal}
+                    className="inline-flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors text-left"
+                  >
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    <span>GDPR &amp; Privacy Charter</span>
+                  </button>
+                ) : (
+                  <Link
+                    href="/privacy"
+                    className="inline-flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors"
+                  >
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    <span>GDPR &amp; Privacy Charter</span>
+                  </Link>
+                )}
+              </li>
             </ul>
           </div>
 
@@ -122,8 +143,24 @@ export function Footer({ onOpenCorporateModal, onNavigateTab }: FooterProps) {
 
         {/* Bottom copyright & offline metadata */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          <div>
-            &copy; 2026 Universal Defence and Security Solutions Ltd. All rights reserved. Registered in England &amp; Wales.
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span>&copy; 2026 Universal Defence and Security Solutions Ltd. Registered in England &amp; Wales.</span>
+            <span>&bull;</span>
+            {onOpenGDPRModal ? (
+              <button
+                onClick={onOpenGDPRModal}
+                className="text-slate-300 hover:text-white underline font-mono text-[11px]"
+              >
+                GDPR &amp; Privacy Rights
+              </button>
+            ) : (
+              <Link
+                href="/privacy"
+                className="text-slate-300 hover:text-white underline font-mono text-[11px]"
+              >
+                GDPR &amp; Privacy Policy
+              </Link>
+            )}
           </div>
           <div className="flex items-center gap-4 text-[11px] font-mono text-slate-400">
             <span className="inline-flex items-center gap-1">
@@ -131,7 +168,9 @@ export function Footer({ onOpenCorporateModal, onNavigateTab }: FooterProps) {
               Local Storage Encryption / Offline Capable
             </span>
             <span>•</span>
-            <span>British English</span>
+            <Link href="/privacy" className="hover:text-slate-200 underline">
+              /privacy
+            </Link>
           </div>
         </div>
       </div>

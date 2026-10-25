@@ -653,3 +653,63 @@ export function resetChecklistStorage(): UserProgress {
   saveStoredProgress(updated);
   return updated;
 }
+
+/**
+ * Permanently purges all user data and resets application state to baseline (GDPR Art. 17 Right to Erasure).
+ */
+export function purgeAllUserData(): UserProgress {
+  if (typeof window !== 'undefined') {
+    try {
+      window.localStorage.removeItem(STORAGE_KEY);
+      window.localStorage.removeItem('udss_gdpr_acknowledged_v1');
+    } catch (e) {
+      console.error('Failed to purge local storage', e);
+    }
+  }
+  const fresh: UserProgress = {
+    ...defaultProgress,
+    prepId: generatePrepId(),
+    recoveryToken: generateRandomToken(),
+  };
+  saveStoredProgress(fresh);
+  return fresh;
+}
+
+/**
+ * Generates a structured JSON export of all personal data held for GDPR Art. 15 & 20 Data Portability.
+ */
+export function exportAllUserDataJson(): string {
+  const current = getProgressSnapshot();
+  const exportPayload = {
+    gdprNotice: 'UDSS Civilian Preparedness Assistant - GDPR Article 20 Personal Data Export',
+    dateExported: new Date().toISOString(),
+    dataController: 'Universal Defence and Security Solutions Ltd, 33 Cannon St, London EC4M 5SB',
+    legalBasis: 'UK GDPR / Data Protection Act 2018 - Privacy by Design (Client-side Local Processing)',
+    userRecord: current,
+  };
+  return JSON.stringify(exportPayload, null, 2);
+}
+
+/**
+ * Checks if the user has acknowledged the GDPR Privacy Notice.
+ */
+export function isGDPRAcknowledged(): boolean {
+  if (typeof window === 'undefined') return true;
+  try {
+    return window.localStorage.getItem('udss_gdpr_acknowledged_v1') === 'true';
+  } catch {
+    return true;
+  }
+}
+
+/**
+ * Marks the GDPR Privacy Notice as acknowledged.
+ */
+export function setGDPRAcknowledged(): void {
+  if (typeof window === 'undefined') return;
+  try {
+    window.localStorage.setItem('udss_gdpr_acknowledged_v1', 'true');
+  } catch (e) {
+    console.error('Failed to set GDPR acknowledgement', e);
+  }
+}
