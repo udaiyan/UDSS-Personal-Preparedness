@@ -220,7 +220,7 @@ export function getStoredProgress(): UserProgress {
     if (!parsed.utilityPlan) parsed.utilityPlan = defaultProgress.utilityPlan;
     if (!parsed.buddies) parsed.buddies = [];
     if (!parsed.pantryChecklist) parsed.pantryChecklist = {};
-    return parsed;
+    return syncChecklistFromLogisticsAndGrabBags(parsed);
   } catch (e) {
     console.error('Failed to read user progress from localStorage', e);
     return defaultProgress;
@@ -380,6 +380,319 @@ export function updateChecklistItemStatus(itemId: string, status: ChecklistItemS
   return updated;
 }
 
+/**
+ * Automatically synchronises Check List items when users pack Grab Bags or check Logistics Pantry provisions.
+ * Even though grab bags contain smaller quantities tailored for rapid evacuation,
+ * packing items advances the corresponding household Check List item and Ready Score.
+ */
+export function syncChecklistFromLogisticsAndGrabBags(progress: UserProgress): UserProgress {
+  const bags = Object.values(progress.individualGrabBags || {});
+  const pantry = progress.pantryChecklist || {};
+  const updatedStatuses: Record<string, ChecklistItemStatus> = { ...progress.checklistStatuses };
+
+  const getGrabBagStats = (matcher: (itemId: string, role: string) => boolean) => {
+    let totalEligible = 0;
+    let packedCount = 0;
+    bags.forEach((bag) => {
+      const matching = bag.items.filter((i) => matcher(i.id, bag.role));
+      if (matching.length > 0) {
+        totalEligible++;
+        if (matching.some((i) => i.isPacked)) {
+          packedCount++;
+        }
+      }
+    });
+    return { totalEligible, packedCount };
+  };
+
+  // 1. Water ('chk-basic-water')
+  const waterStats = getGrabBagStats((id) => id === 'water' || id === 'pet-water');
+  const pantryWater = Boolean(pantry['water-bottles']);
+  if (pantryWater || (waterStats.totalEligible > 0 && waterStats.packedCount >= waterStats.totalEligible)) {
+    updatedStatuses['chk-basic-water'] = 'completed';
+  } else if (waterStats.packedCount > 0) {
+    if (updatedStatuses['chk-basic-water'] !== 'completed') {
+      updatedStatuses['chk-basic-water'] = waterStats.totalEligible <= 1 ? 'completed' : 'in_progress';
+    }
+  }
+
+  // 2. Food ('chk-basic-food')
+  const foodPantryCount = ['tinned-proteins', 'carbs', 'veg-fruit', 'dairy-milk', 'quick-energy'].filter(
+    (k) => pantry[k]
+  ).length;
+  const foodGrabStats = getGrabBagStats((id) => id === 'water');
+  if (foodPantryCount >= 3 || (foodGrabStats.totalEligible > 0 && foodGrabStats.packedCount >= foodGrabStats.totalEligible && foodPantryCount >= 1)) {
+    updatedStatuses['chk-basic-food'] = 'completed';
+  } else if (foodPantryCount > 0 || foodGrabStats.packedCount > 0) {
+    if (updatedStatuses['chk-basic-food'] !== 'completed') {
+      updatedStatuses['chk-basic-food'] = 'in_progress';
+    }
+  }
+
+  // 3. Torch & Lighting ('chk-basic-light')
+  const lightStats = getGrabBagStats((id) => id === 'light');
+  if (lightStats.totalEligible > 0 && lightStats.packedCount >= lightStats.totalEligible) {
+    updatedStatuses['chk-basic-light'] = 'completed';
+  } else if (lightStats.packedCount > 0) {
+    if (updatedStatuses['chk-basic-light'] !== 'completed') {
+      updatedStatuses['chk-basic-light'] = lightStats.totalEligible <= 1 ? 'completed' : 'in_progress';
+    }
+  }
+
+  // 4. Blankets & Warmth ('chk-basic-warmth')
+  const warmthStats = getGrabBagStats((id) => id === 'warmth' || id === 'clothes');
+  if (warmthStats.totalEligible > 0 && warmthStats.packedCount >= warmthStats.totalEligible) {
+    updatedStatuses['chk-basic-warmth'] = 'completed';
+  } else if (warmthStats.packedCount > 0) {
+    if (updatedStatuses['chk-basic-warmth'] !== 'completed') {
+      updatedStatuses['chk-basic-warmth'] = warmthStats.totalEligible <= 1 ? 'completed' : 'in_progress';
+    }
+  }
+
+  // 5. Portable Power Bank ('chk-basic-powerbank')
+  const powerStats = getGrabBagStats((id) => id === 'power');
+  if (powerStats.totalEligible > 0 && powerStats.packedCount >= powerStats.totalEligible) {
+    updatedStatuses['chk-basic-powerbank'] = 'completed';
+  } else if (powerStats.packedCount > 0) {
+    if (updatedStatuses['chk-basic-powerbank'] !== 'completed') {
+      updatedStatuses['chk-basic-powerbank'] = powerStats.totalEligible <= 1 ? 'completed' : 'in_progress';
+    }
+  }
+
+  // 6. Cash ('chk-basic-cash')
+  const cashStats = getGrabBagStats((id) => id === 'cash');
+  if (cashStats.totalEligible > 0 && cashStats.packedCount >= cashStats.totalEligible) {
+    updatedStatuses['chk-basic-cash'] = 'completed';
+  } else if (cashStats.packedCount > 0) {
+    if (updatedStatuses['chk-basic-cash'] !== 'completed') {
+      updatedStatuses['chk-basic-cash'] = cashStats.totalEligible <= 1 ? 'completed' : 'in_progress';
+    }
+  }
+
+  // 7. Copies of IDs & Vital Documents ('chk-basic-docs')
+  const docsStats = getGrabBagStats((id) => id === 'docs' || id === 'records');
+  if (docsStats.totalEligible > 0 && docsStats.packedCount >= docsStats.totalEligible) {
+    updatedStatuses['chk-basic-docs'] = 'completed';
+  } else if (docsStats.packedCount > 0) {
+    if (updatedStatuses['chk-basic-docs'] !== 'completed') {
+      updatedStatuses['chk-basic-docs'] = docsStats.totalEligible <= 1 ? 'completed' : 'in_progress';
+    }
+  }
+
+  // 8. Important Contacts Card ('chk-basic-contacts')
+  const hasContacts = Boolean(progress.emergencyPlan?.primaryContactPhone && progress.emergencyPlan?.outOfAreaContactPhone);
+  if ((docsStats.totalEligible > 0 && docsStats.packedCount >= docsStats.totalEligible) || hasContacts) {
+    updatedStatuses['chk-basic-contacts'] = 'completed';
+  } else if (docsStats.packedCount > 0 || progress.emergencyPlan?.primaryContactPhone) {
+    if (updatedStatuses['chk-basic-contacts'] !== 'completed') {
+      updatedStatuses['chk-basic-contacts'] = docsStats.totalEligible <= 1 ? 'completed' : 'in_progress';
+    }
+  }
+
+  // 9. First Aid Items ('chk-basic-firstaid')
+  const firstaidStats = getGrabBagStats((id) => id === 'firstaid');
+  if (firstaidStats.totalEligible > 0 && firstaidStats.packedCount >= firstaidStats.totalEligible) {
+    updatedStatuses['chk-basic-firstaid'] = 'completed';
+  } else if (firstaidStats.packedCount > 0) {
+    if (updatedStatuses['chk-basic-firstaid'] !== 'completed') {
+      updatedStatuses['chk-basic-firstaid'] = firstaidStats.totalEligible <= 1 ? 'completed' : 'in_progress';
+    }
+  }
+
+  // 10. Essential Medications ('chk-basic-meds')
+  const medsStats = getGrabBagStats((id) => id === 'meds');
+  if (medsStats.totalEligible > 0 && medsStats.packedCount >= medsStats.totalEligible) {
+    updatedStatuses['chk-basic-meds'] = 'completed';
+  } else if (medsStats.packedCount > 0) {
+    if (updatedStatuses['chk-basic-meds'] !== 'completed') {
+      updatedStatuses['chk-basic-meds'] = medsStats.totalEligible <= 1 ? 'completed' : 'in_progress';
+    }
+  }
+
+  // 11. Hygiene & Wet Wipes ('chk-basic-hygiene')
+  const hygieneStats = getGrabBagStats((id) => id === 'nappies' || id === 'mask');
+  if (hygieneStats.packedCount > 0) {
+    if (updatedStatuses['chk-basic-hygiene'] !== 'completed') {
+      updatedStatuses['chk-basic-hygiene'] = 'in_progress';
+    }
+  }
+
+  // 12. Baby Products ('chk-basic-baby')
+  const hasInfants = progress.householdProfile.members.some((m) => m.category === 'infant');
+  if (hasInfants) {
+    const babyStats = getGrabBagStats((id) => id === 'formula' || id === 'nappies');
+    const pantryFormula = Boolean(pantry['infant-formula']);
+    if (pantryFormula || (babyStats.totalEligible > 0 && babyStats.packedCount >= babyStats.totalEligible)) {
+      updatedStatuses['chk-basic-baby'] = 'completed';
+    } else if (babyStats.packedCount > 0) {
+      if (updatedStatuses['chk-basic-baby'] !== 'completed') {
+        updatedStatuses['chk-basic-baby'] = 'in_progress';
+      }
+    }
+  }
+
+  // 13. Pet Products ('chk-basic-pet')
+  if (progress.householdProfile.hasPets) {
+    const petStats = getGrabBagStats((id) => id === 'pet-food' || id === 'pet-water' || id === 'lead');
+    const pantryPet = Boolean(pantry['pet-provisions']);
+    if (pantryPet || (petStats.totalEligible > 0 && petStats.packedCount >= petStats.totalEligible)) {
+      updatedStatuses['chk-basic-pet'] = 'completed';
+    } else if (petStats.packedCount > 0) {
+      if (updatedStatuses['chk-basic-pet'] !== 'completed') {
+        updatedStatuses['chk-basic-pet'] = 'in_progress';
+      }
+    }
+  }
+
+  // 14. Household Utility Shutoffs ('chk-basic-shutoffs')
+  if (progress.utilityPlan?.waterStopcockLocation && progress.utilityPlan?.electricityConsumerUnitLocation) {
+    updatedStatuses['chk-basic-shutoffs'] = 'completed';
+  }
+
+  const updatedCompletedIds = Object.keys(updatedStatuses).filter(
+    (id) => updatedStatuses[id] === 'completed'
+  );
+
+  return {
+    ...progress,
+    checklistStatuses: updatedStatuses,
+    completedChecklistIds: updatedCompletedIds,
+  };
+}
+
+/**
+ * Returns a human-readable summary of how a Check List item was influenced or updated
+ * by Grab Bags or Logistics Pantry.
+ */
+export function getChecklistSyncSource(itemId: string, progress: UserProgress): { label: string; countText: string } | null {
+  const bags = Object.values(progress.individualGrabBags || {});
+  const pantry = progress.pantryChecklist || {};
+
+  const getStats = (matcher: (id: string, role: string) => boolean) => {
+    let total = 0;
+    let packed = 0;
+    bags.forEach((bag) => {
+      const match = bag.items.filter((i) => matcher(i.id, bag.role));
+      if (match.length > 0) {
+        total++;
+        if (match.some((i) => i.isPacked)) packed++;
+      }
+    });
+    return { total, packed };
+  };
+
+  switch (itemId) {
+    case 'chk-basic-water': {
+      if (pantry['water-bottles']) {
+        return { label: 'Logistics Pantry', countText: '5L water reserve secured' };
+      }
+      const s = getStats((id) => id === 'water' || id === 'pet-water');
+      if (s.packed > 0) {
+        return { label: 'Grab Bags', countText: `${s.packed}/${s.total} bags packed` };
+      }
+      return null;
+    }
+    case 'chk-basic-food': {
+      const pCount = ['tinned-proteins', 'carbs', 'veg-fruit', 'dairy-milk', 'quick-energy'].filter((k) => pantry[k]).length;
+      if (pCount > 0) {
+        return { label: 'Logistics Pantry', countText: `${pCount}/5 staple categories secured` };
+      }
+      const s = getStats((id) => id === 'water');
+      if (s.packed > 0) {
+        return { label: 'Grab Bags', countText: `${s.packed}/${s.total} emergency rations packed` };
+      }
+      return null;
+    }
+    case 'chk-basic-light': {
+      const s = getStats((id) => id === 'light');
+      if (s.packed > 0) {
+        return { label: 'Grab Bags', countText: `${s.packed}/${s.total} torches packed` };
+      }
+      return null;
+    }
+    case 'chk-basic-warmth': {
+      const s = getStats((id) => id === 'warmth' || id === 'clothes');
+      if (s.packed > 0) {
+        return { label: 'Grab Bags', countText: `${s.packed}/${s.total} foil blankets/layers packed` };
+      }
+      return null;
+    }
+    case 'chk-basic-powerbank': {
+      const s = getStats((id) => id === 'power');
+      if (s.packed > 0) {
+        return { label: 'Grab Bags', countText: `${s.packed}/${s.total} power banks packed` };
+      }
+      return null;
+    }
+    case 'chk-basic-cash': {
+      const s = getStats((id) => id === 'cash');
+      if (s.packed > 0) {
+        return { label: 'Grab Bags', countText: `${s.packed}/${s.total} emergency cash packed` };
+      }
+      return null;
+    }
+    case 'chk-basic-docs': {
+      const s = getStats((id) => id === 'docs' || id === 'records');
+      if (s.packed > 0) {
+        return { label: 'Grab Bags', countText: `${s.packed}/${s.total} ID copies packed` };
+      }
+      return null;
+    }
+    case 'chk-basic-contacts': {
+      if (progress.emergencyPlan?.primaryContactPhone && progress.emergencyPlan?.outOfAreaContactPhone) {
+        return { label: 'Emergency Plan', countText: 'Primary & Out-of-Area contacts logged' };
+      }
+      const s = getStats((id) => id === 'docs');
+      if (s.packed > 0) {
+        return { label: 'Grab Bags', countText: `${s.packed}/${s.total} contact cards packed` };
+      }
+      return null;
+    }
+    case 'chk-basic-firstaid': {
+      const s = getStats((id) => id === 'firstaid');
+      if (s.packed > 0) {
+        return { label: 'Grab Bags', countText: `${s.packed}/${s.total} kits packed` };
+      }
+      return null;
+    }
+    case 'chk-basic-meds': {
+      const s = getStats((id) => id === 'meds');
+      if (s.packed > 0) {
+        return { label: 'Grab Bags', countText: `${s.packed}/${s.total} prescriptions packed` };
+      }
+      return null;
+    }
+    case 'chk-basic-baby': {
+      if (pantry['infant-formula']) {
+        return { label: 'Logistics Pantry', countText: 'Liquid baby formula secured' };
+      }
+      const s = getStats((id) => id === 'formula' || id === 'nappies');
+      if (s.packed > 0) {
+        return { label: 'Grab Bags', countText: 'Baby formula & supplies packed' };
+      }
+      return null;
+    }
+    case 'chk-basic-pet': {
+      if (pantry['pet-provisions']) {
+        return { label: 'Logistics Pantry', countText: '3-day pet supplies secured' };
+      }
+      const s = getStats((id) => id === 'pet-food' || id === 'pet-water' || id === 'lead');
+      if (s.packed > 0) {
+        return { label: 'Grab Bags', countText: 'Pet rations & lead packed' };
+      }
+      return null;
+    }
+    case 'chk-basic-shutoffs': {
+      if (progress.utilityPlan?.waterStopcockLocation && progress.utilityPlan?.electricityConsumerUnitLocation) {
+        return { label: 'Emergency Plan', countText: 'Stopcock & Breaker logged' };
+      }
+      return null;
+    }
+    default:
+      return null;
+  }
+}
+
 export function updateHouseholdProfile(profile: HouseholdProfile): UserProgress {
   const current = getProgressSnapshot();
   const updatedGrabBags = syncGrabBagsWithMembers(profile, current.individualGrabBags);
@@ -389,8 +702,9 @@ export function updateHouseholdProfile(profile: HouseholdProfile): UserProgress 
     householdProfile: profile,
     individualGrabBags: updatedGrabBags,
   };
-  saveStoredProgress(updated);
-  return updated;
+  const synced = syncChecklistFromLogisticsAndGrabBags(updated);
+  saveStoredProgress(synced);
+  return synced;
 }
 
 export function toggleGrabBagItem(memberId: string, itemId: string): UserProgress {
@@ -414,8 +728,9 @@ export function toggleGrabBagItem(memberId: string, itemId: string): UserProgres
       },
     },
   };
-  saveStoredProgress(updated);
-  return updated;
+  const synced = syncChecklistFromLogisticsAndGrabBags(updated);
+  saveStoredProgress(synced);
+  return synced;
 }
 
 export function markEntireGrabBag(memberId: string, complete: boolean): UserProgress {
@@ -436,8 +751,9 @@ export function markEntireGrabBag(memberId: string, complete: boolean): UserProg
       },
     },
   };
-  saveStoredProgress(updated);
-  return updated;
+  const synced = syncChecklistFromLogisticsAndGrabBags(updated);
+  saveStoredProgress(synced);
+  return synced;
 }
 
 export function addAccountabilityBuddy(
@@ -506,8 +822,9 @@ export function updateEmergencyPlan(plan: EmergencyPlan): UserProgress {
     ...current,
     emergencyPlan: plan,
   };
-  saveStoredProgress(updated);
-  return updated;
+  const synced = syncChecklistFromLogisticsAndGrabBags(updated);
+  saveStoredProgress(synced);
+  return synced;
 }
 
 export function updateUtilityPlan(plan: UtilityShutoffPlan): UserProgress {
@@ -516,8 +833,9 @@ export function updateUtilityPlan(plan: UtilityShutoffPlan): UserProgress {
     ...current,
     utilityPlan: plan,
   };
-  saveStoredProgress(updated);
-  return updated;
+  const synced = syncChecklistFromLogisticsAndGrabBags(updated);
+  saveStoredProgress(synced);
+  return synced;
 }
 
 export function togglePantryItem(itemId: string): UserProgress {
@@ -531,8 +849,9 @@ export function togglePantryItem(itemId: string): UserProgress {
     ...current,
     pantryChecklist: updatedPantry,
   };
-  saveStoredProgress(updated);
-  return updated;
+  const synced = syncChecklistFromLogisticsAndGrabBags(updated);
+  saveStoredProgress(synced);
+  return synced;
 }
 
 export function setAllPantryItems(itemIds: string[], value: boolean): UserProgress {
@@ -545,8 +864,9 @@ export function setAllPantryItems(itemIds: string[], value: boolean): UserProgre
     ...current,
     pantryChecklist: updatedPantry,
   };
-  saveStoredProgress(updated);
-  return updated;
+  const synced = syncChecklistFromLogisticsAndGrabBags(updated);
+  saveStoredProgress(synced);
+  return synced;
 }
 
 export async function uploadEncryptedBackup(progress: UserProgress): Promise<{ success: boolean; updatedAt?: string; error?: string }> {

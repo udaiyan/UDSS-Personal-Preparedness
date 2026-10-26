@@ -73,7 +73,7 @@ export function Footer({ onOpenCorporateModal, onNavigateTab, onOpenGDPRModal }:
                   }}
                   className="text-slate-300 hover:text-white transition-colors"
                 >
-                  Household Preparedness Checklist
+                  Household Preparedness Check List
                 </button>
               </li>
               <li>

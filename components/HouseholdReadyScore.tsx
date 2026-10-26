@@ -150,7 +150,7 @@ export function HouseholdReadyScore({
               className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[#1B2A4A] bg-[#F5F5F0] hover:bg-[#EAEAE2] border border-[#D0D0D0] transition-colors inline-flex items-center justify-center gap-1.5"
             >
               <UserCheck className="w-3.5 h-3.5 text-[#8B1A1A]" />
-              Accountability Buddies ({progress.buddies.length})
+              My linked people ({progress.buddies.length})
             </button>
             <button
               onClick={onOpenProfiler}
@@ -194,10 +194,10 @@ export function HouseholdReadyScore({
           <button
             type="button"
             onClick={handleReviewMeasures}
-            aria-label="Review household preparedness measures"
+            aria-label="Review household preparedness check list"
             className="text-xs font-semibold uppercase tracking-wider text-[#1B2A4A] hover:text-[#8B1A1A] hover:underline shrink-0 inline-flex items-center gap-1 font-mono cursor-pointer py-1 px-2.5 rounded bg-white sm:bg-transparent border border-[#D0D0D0] sm:border-0 shadow-xs sm:shadow-none transition-all active:scale-95"
           >
-            Review Measures <ChevronRight className="w-3.5 h-3.5" />
+            Review Check List <ChevronRight className="w-3.5 h-3.5" />
           </button>
         </div>
 

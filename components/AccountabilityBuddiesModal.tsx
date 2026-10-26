@@ -120,13 +120,13 @@ export function AccountabilityBuddiesModal({
               Mutual Resilience Network
             </div>
             <h2 id="buddies-modal-title" className="font-serif text-xl sm:text-2xl font-bold text-white mt-0.5">
-              Accountability Buddies
+              My linked people
             </h2>
           </div>
           <button
             onClick={onClose}
             className="text-slate-300 hover:text-white p-1 rounded"
-            aria-label="Close accountability buddies dialog"
+            aria-label="Close My linked people dialog"
           >
             <X className="w-5 h-5" />
           </button>
@@ -141,20 +141,20 @@ export function AccountabilityBuddiesModal({
               Strictly Anonymous Status Exchange
             </div>
             <p className="text-[#333333]">
-              Linked buddies see <strong>only each other&apos;s headline preparedness level</strong> (e.g. &ldquo;Partially prepared&rdquo;), never your checklist items, household members, or medical details. Nicknames are stored solely on your device and are never transmitted.
+              Linked people see <strong>only each other&apos;s headline preparedness level</strong> (e.g. &ldquo;Partially prepared&rdquo;), never your checklist items, household members, or medical details. Nicknames are stored solely on your device and are never transmitted.
             </p>
           </div>
 
-          {/* Add Buddy Form */}
+          {/* Add Person Form */}
           <form onSubmit={handleAddBuddy} className="p-4 border border-[#D0D0D0] bg-[#FAF9F6] space-y-4">
             <h3 className="font-serif text-base font-bold text-[#1B2A4A]">
-              Link a New Preparedness Buddy
+              Link a New Person
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-12 gap-3">
               <div className="sm:col-span-6">
                 <label htmlFor="target-prep-id" className="block text-xs font-semibold text-[#1A1A1A] mb-1">
-                  Buddy&apos;s UDSS Prep ID
+                  Person&apos;s UDSS Prep ID
                 </label>
                 <input
                   id="target-prep-id"
@@ -202,15 +202,15 @@ export function AccountabilityBuddiesModal({
                 className="px-5 py-2 text-xs font-semibold uppercase tracking-wider text-white bg-[#1B2A4A] hover:bg-[#132039] disabled:opacity-50 transition-colors inline-flex items-center gap-1.5"
               >
                 <Plus className="w-3.5 h-3.5" />
-                {isLinking ? 'Verifying...' : 'Link Accountability Buddy'}
+                {isLinking ? 'Verifying...' : 'Link Person'}
               </button>
             </div>
           </form>
 
-          {/* Linked Buddies List */}
+          {/* Linked People List */}
           <div className="space-y-3">
             <h3 className="font-serif text-base font-bold text-[#1B2A4A] border-b border-[#D0D0D0] pb-2 flex items-center justify-between">
-              <span>Your Active Buddies ({progress.buddies.length})</span>
+              <span>My linked people ({progress.buddies.length})</span>
               <span className="text-xs font-sans font-normal text-[#666666]">
                 Your Prep ID: <strong className="font-mono text-[#1B2A4A]">{progress.prepId}</strong>
               </span>
@@ -219,7 +219,7 @@ export function AccountabilityBuddiesModal({
             {progress.buddies.length === 0 ? (
               <div className="p-8 text-center bg-[#FAF9F5] border border-[#D0D0D0] text-xs text-[#666666] space-y-2">
                 <UserCheck className="w-8 h-8 text-[#A0A0A0] mx-auto" />
-                <p>No accountability buddies linked yet.</p>
+                <p>No linked people added yet.</p>
                 <p className="max-w-md mx-auto text-[#4A4A4A]">
                   Share your Prep ID (<strong className="font-mono">{progress.prepId}</strong>) with a family member, work colleague, or neighbour so you can track each other&apos;s readiness anonymously.
                 </p>

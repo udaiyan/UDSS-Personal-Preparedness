@@ -260,6 +260,19 @@ export function WaterFoodCalculators({
 
       {/* Interactive Pantry Shopping Checklist */}
       <div className="bg-white border border-[#D0D0D0] p-5 shadow-xs space-y-4">
+        {/* Auto-Sync with Check List Banner */}
+        <div className="p-3 bg-[#FAF9F5] border-l-4 border-emerald-600 text-xs text-[#222222] flex items-start gap-2.5 shadow-2xs">
+          <Sparkles className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
+          <div>
+            <strong className="text-emerald-950 font-semibold block sm:inline mr-1">
+              Check List &amp; Ready Score Auto-Sync Active:
+            </strong>
+            <span className="text-[#4A4A4A]">
+              Checking off water and pantry provisions here directly updates the corresponding items on your household Check List and advances your Ready Score.
+            </span>
+          </div>
+        </div>
+
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#EFEFEA] pb-3">
           <div>
             <h3 className="font-serif text-base font-bold text-[#1B2A4A] flex items-center gap-2">
@@ -329,9 +342,14 @@ export function WaterFoodCalculators({
                       {item.category}
                     </span>
                     {isChecked && (
-                      <span className="text-[10px] font-mono text-emerald-800 font-bold uppercase tracking-wide">
-                        • Secured in pantry
-                      </span>
+                      <>
+                        <span className="text-[10px] font-mono text-emerald-800 font-bold uppercase tracking-wide">
+                          • Secured in pantry
+                        </span>
+                        <span className="text-[10px] font-mono text-emerald-700 bg-emerald-100/70 px-1.5 py-0.5 rounded-xs ml-auto">
+                          ✓ Updates Check List
+                        </span>
+                      </>
                     )}
                   </div>
                   <strong

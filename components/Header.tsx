@@ -127,7 +127,7 @@ export function Header({
             >
               <span className="inline-flex items-center gap-1.5">
                 <CheckSquare className="w-3.5 h-3.5" />
-                Measures
+                Check List
               </span>
             </button>
 
@@ -221,7 +221,7 @@ export function Header({
             }`}
           >
             <CheckSquare className="w-4 h-4 text-[#D0D0D0]" />
-            Preparedness Measures (Basic &amp; Advanced)
+            Check List (Basic &amp; Advanced)
           </button>
 
           <button

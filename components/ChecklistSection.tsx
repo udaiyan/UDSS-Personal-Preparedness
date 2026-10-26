@@ -10,7 +10,6 @@ import {
   Printer,
   RotateCcw,
   Sparkles,
-  Shield,
   ChevronDown,
   ChevronUp,
   Sun,
@@ -19,7 +18,7 @@ import {
   Download
 } from 'lucide-react';
 import { ChecklistItem, ChecklistItemStatus, UserProgress } from '@/types/briefing';
-import { updateChecklistItemStatus, resetChecklistStorage } from '@/lib/storage';
+import { updateChecklistItemStatus, resetChecklistStorage, getChecklistSyncSource } from '@/lib/storage';
 import { safePrintOrDownload, downloadTextFile } from '@/lib/safe-print';
 
 interface ChecklistSectionProps {
@@ -114,7 +113,7 @@ export function ChecklistSection({ items, progress }: ChecklistSectionProps) {
             Civil Contingency Action Plan
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#1B2A4A]">
-            Household Preparedness Measures
+            Household Preparedness Check List
           </h2>
         </div>
 
@@ -263,7 +262,7 @@ export function ChecklistSection({ items, progress }: ChecklistSectionProps) {
             </a>
           </div>
           <p className="text-xs text-[#4A4A4A] leading-relaxed">
-            All 10 core provisions from the Cabinet Office civil contingency checklist are incorporated below: <strong>Water</strong> (3L/person/day), <strong>Food</strong> (3-day non-perishable), <strong>Light &amp; Warmth</strong> (torches, batteries, blankets/sleeping bags), <strong>Communication</strong> (FM radio, power banks), <strong>Money &amp; Documents</strong> (cash coins/notes, ID copies, contact cards), <strong>Health</strong> (first aid, prescription medicines), <strong>Hygiene</strong> (sanitiser, wet wipes), <strong>Baby products</strong>, <strong>Pet food &amp; water</strong>, and <strong>Community Mutual Aid</strong>.
+            All core provisions from the Cabinet Office civil contingency checklist are incorporated below: <strong>Water</strong> (3L/person/day), <strong>Food</strong> (3-day non-perishable), <strong>Light &amp; Warmth</strong> (torches, batteries, blankets/sleeping bags), <strong>Communication</strong> (FM radio, power banks), <strong>Money &amp; Documents</strong> (cash coins/notes, ID copies, contact cards), <strong>Health</strong> (first aid, prescription medicines), <strong>Hygiene</strong> (sanitiser, wet wipes), <strong>Baby products</strong>, <strong>Pet food &amp; water</strong>, and <strong>Community Mutual Aid</strong>.
           </p>
         </div>
       )}
@@ -303,6 +302,7 @@ export function ChecklistSection({ items, progress }: ChecklistSectionProps) {
           } else if (isNotRelevant) {
             cardStyle = 'bg-[#F0F0EC]/60 border-[#D8D8D0] opacity-65';
           }
+          const syncSource = getChecklistSyncSource(item.id, progress);
 
           return (
             <div key={item.id} className={`border transition-all p-4 sm:p-5 ${cardStyle}`}>
@@ -326,10 +326,10 @@ export function ChecklistSection({ items, progress }: ChecklistSectionProps) {
                       {item.priority}
                     </span>
 
-                    {item.govStandard && (
-                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#1B2A4A] bg-[#FAF9F5] border border-[#1B2A4A] px-2 py-0.5 inline-flex items-center gap-1">
-                        <Shield className="w-3 h-3 text-[#8B1A1A]" />
-                        UK Gov Standard
+                    {syncSource && (
+                      <span className="text-[10px] font-mono font-medium text-emerald-900 bg-emerald-50 px-2 py-0.5 border border-emerald-300 inline-flex items-center gap-1 shadow-2xs">
+                        <Sparkles className="w-3 h-3 text-emerald-700" />
+                        <span>{syncSource.label}: {syncSource.countText}</span>
                       </span>
                     )}
 

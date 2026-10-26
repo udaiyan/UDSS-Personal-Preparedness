@@ -74,6 +74,19 @@ export function IndividualGrabBags({ progress, onOpenProfiler }: IndividualGrabB
         Rather than a single unwieldy family container, UK civil contingency protocol advises maintaining an individual backpack per family member. Each bag is tailored to the person&apos;s age, medical necessities, and mobility role.
       </p>
 
+      {/* Auto-Sync with Check List Banner */}
+      <div className="p-3 bg-[#FAF9F5] border-l-4 border-emerald-600 text-xs text-[#222222] flex items-start gap-2.5 shadow-2xs">
+        <Sparkles className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
+        <div>
+          <strong className="text-emerald-950 font-semibold block sm:inline mr-1">
+            Check List &amp; Ready Score Auto-Sync Active:
+          </strong>
+          <span className="text-[#4A4A4A]">
+            Packing items in your grab bags automatically updates your household Check List and advances your Ready Score—even though evacuation grab bags contain smaller individual rations.
+          </span>
+        </div>
+      </div>
+
       {/* Bag Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {bags.map((bag) => {
@@ -172,12 +185,17 @@ export function IndividualGrabBags({ progress, onOpenProfiler }: IndividualGrabB
                           )}
                         </button>
                         <span
-                          className={`leading-snug ${
+                          className={`leading-snug flex-1 ${
                             item.isPacked ? 'text-emerald-950 font-medium' : 'text-[#333333]'
                           }`}
                         >
                           {item.label}
                         </span>
+                        {item.isPacked && (
+                          <span className="text-[10px] font-mono text-emerald-700 shrink-0 bg-emerald-100/70 px-1.5 py-0.5 rounded-xs">
+                            ✓ Updates Check List
+                          </span>
+                        )}
                       </div>
                     ))}
                   </div>
