@@ -110,14 +110,18 @@ export function syncGrabBagsWithMembers(
     }
   });
 
-  if (profile.hasPets && profile.petCount > 0) {
+  if (profile.hasPets) {
+    const pCount = Math.max(1, profile.petCount || 1);
     const petId = 'member-pet';
     if (existingBags[petId]) {
-      result[petId] = existingBags[petId];
+      result[petId] = {
+        ...existingBags[petId],
+        label: pCount === 1 ? 'Family Pet' : `Family Pets (${pCount})`,
+      };
     } else {
       result[petId] = {
         memberId: petId,
-        label: profile.petCount === 1 ? 'Family Pet' : `Family Pets (${profile.petCount})`,
+        label: pCount === 1 ? 'Family Pet' : `Family Pets (${pCount})`,
         role: 'pet',
         items: generateDefaultGrabBagItems('pet'),
         isComplete: false,
@@ -206,16 +210,28 @@ export function getStoredProgress(): UserProgress {
     // Backwards-compatibility merges
     if (!parsed.prepId) parsed.prepId = generatePrepId();
     if (!parsed.recoveryToken) parsed.recoveryToken = generateRandomToken();
-    if (!parsed.householdProfile) parsed.householdProfile = defaultProgress.householdProfile;
+    if (!parsed.householdProfile) {
+      parsed.householdProfile = defaultProgress.householdProfile;
+    } else {
+      const storedHasPets =
+        typeof parsed.householdProfile.hasPets === 'boolean'
+          ? parsed.householdProfile.hasPets
+          : Boolean(
+              (parsed.householdProfile.petCount && parsed.householdProfile.petCount > 0) ||
+                (parsed.individualGrabBags && parsed.individualGrabBags['member-pet'])
+            );
+      parsed.householdProfile.hasPets = storedHasPets;
+      parsed.householdProfile.petCount = storedHasPets
+        ? Math.max(1, parsed.householdProfile.petCount || 1)
+        : 0;
+    }
     if (!parsed.checklistStatuses) {
       parsed.checklistStatuses = {};
       (parsed.completedChecklistIds || []).forEach((id) => {
         parsed.checklistStatuses[id] = 'completed';
       });
     }
-    if (!parsed.individualGrabBags || Object.keys(parsed.individualGrabBags).length === 0) {
-      parsed.individualGrabBags = syncGrabBagsWithMembers(parsed.householdProfile, {});
-    }
+    parsed.individualGrabBags = syncGrabBagsWithMembers(parsed.householdProfile, parsed.individualGrabBags || {});
     if (!parsed.emergencyPlan) parsed.emergencyPlan = defaultProgress.emergencyPlan;
     if (!parsed.utilityPlan) parsed.utilityPlan = defaultProgress.utilityPlan;
     if (!parsed.buddies) parsed.buddies = [];
@@ -695,11 +711,17 @@ export function getChecklistSyncSource(itemId: string, progress: UserProgress): 
 
 export function updateHouseholdProfile(profile: HouseholdProfile): UserProgress {
   const current = getProgressSnapshot();
-  const updatedGrabBags = syncGrabBagsWithMembers(profile, current.individualGrabBags);
+  const sanitizedProfile: HouseholdProfile = {
+    ...profile,
+    hasPets: Boolean(profile.hasPets),
+    petCount: profile.hasPets ? Math.max(1, profile.petCount || 1) : 0,
+    hasCompletedOnboarding: true,
+  };
+  const updatedGrabBags = syncGrabBagsWithMembers(sanitizedProfile, current.individualGrabBags);
 
   const updated: UserProgress = {
     ...current,
-    householdProfile: profile,
+    householdProfile: sanitizedProfile,
     individualGrabBags: updatedGrabBags,
   };
   const synced = syncChecklistFromLogisticsAndGrabBags(updated);

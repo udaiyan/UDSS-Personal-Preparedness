@@ -265,6 +265,7 @@ export default function HomePage() {
 
       {/* Modals */}
       <HouseholdProfilerModal
+        key={isProfilerOpen ? `profiler-open-${progress.householdProfile.hasPets}-${progress.householdProfile.petCount}` : 'profiler-closed'}
         isOpen={isProfilerOpen}
         onClose={() => setIsProfilerOpen(false)}
         profile={progress.householdProfile}

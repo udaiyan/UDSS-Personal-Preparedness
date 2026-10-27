@@ -15,7 +15,7 @@
     "tier": "basic",
     "category": "Food",
     "title": "Non-perishable food for 3 days (ambient rolling pantry)",
-    "description": "Stock 3 days of food with a long shelf life that doesn't need refrigeration or cooking: tinned meat, fish, beans, vegetables, dried fruit and nuts, pasta, and rolled oats. It's best to buy food you'd usually eat.",
+    "description": "Stock 3 days of food with a long shelf life that doesn't need refrigeration: tinned meat, fish, beans, vegetables, dried fruit and nuts, pasta, rice and rolled oats. It's best to buy food you'd usually eat.",
     "priority": "Essential",
     "tip": "Ensure you possess a manual tin opener. Without one, tinned provisions are inaccessible during electrical outages.",
     "govStandard": true,

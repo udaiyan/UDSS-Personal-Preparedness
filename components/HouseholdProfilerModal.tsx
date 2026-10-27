@@ -12,9 +12,11 @@ interface HouseholdProfilerModalProps {
 }
 
 export function HouseholdProfilerModal({ isOpen, onClose, profile }: HouseholdProfilerModalProps) {
-  const [members, setMembers] = useState<HouseholdMember[]>(profile.members);
-  const [hasPets, setHasPets] = useState<boolean>(profile.hasPets);
-  const [petCount, setPetCount] = useState<number>(profile.petCount || 1);
+  const [members, setMembers] = useState<HouseholdMember[]>(() => profile?.members || []);
+  const [hasPets, setHasPets] = useState<boolean>(() => Boolean(profile?.hasPets));
+  const [petCount, setPetCount] = useState<number>(() =>
+    profile?.hasPets ? Math.max(1, profile?.petCount || 1) : 1
+  );
   const [savedSuccess, setSavedSuccess] = useState<boolean>(false);
 
   if (!isOpen) return null;
@@ -63,10 +65,11 @@ export function HouseholdProfilerModal({ isOpen, onClose, profile }: HouseholdPr
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
+    const isPetsEnabled = Boolean(hasPets);
     const updated: HouseholdProfile = {
       members,
-      hasPets,
-      petCount: hasPets ? petCount : 0,
+      hasPets: isPetsEnabled,
+      petCount: isPetsEnabled ? Math.max(1, petCount || 1) : 0,
       hasCompletedOnboarding: true,
     };
     updateHouseholdProfile(updated);
@@ -245,7 +248,13 @@ export function HouseholdProfilerModal({ isOpen, onClose, profile }: HouseholdPr
                   <input
                     type="checkbox"
                     checked={hasPets}
-                    onChange={(e) => setHasPets(e.target.checked)}
+                    onChange={(e) => {
+                      const next = e.target.checked;
+                      setHasPets(next);
+                      if (next && (!petCount || petCount < 1)) {
+                        setPetCount(1);
+                      }
+                    }}
                     className="sr-only peer"
                   />
                   <div className="w-9 h-5 bg-gray-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#1B2A4A]"></div>
