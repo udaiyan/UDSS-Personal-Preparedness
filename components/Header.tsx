@@ -40,7 +40,7 @@ export function Header({
               className="hidden sm:inline-flex items-center gap-1 text-[11px] text-slate-300 hover:text-white transition-colors"
             >
               <FileText className="w-3 h-3 text-amber-300" />
-              Emergency Plan &amp; Utility Card
+              Print Emergency &amp; Utility Cards
             </button>
             <span className="hidden sm:inline text-slate-500">|</span>
             <button

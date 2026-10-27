@@ -361,7 +361,7 @@ export function GDPRPrivacyModal({
                         onClick={onOpenEmergencyPlan}
                         className="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#1B2A4A] bg-white border border-[#D0D0D0] hover:bg-[#FAF9F5] transition-colors"
                       >
-                        Edit Emergency &amp; Utility Plan &rarr;
+                        Print Emergency &amp; Utility Cards &rarr;
                       </button>
                     )}
                   </div>
