@@ -330,20 +330,6 @@ export function calculateHouseholdReadyScore(
     }
   });
 
-  // Also include grab bags in the basic readiness calculation
-  const grabBags = Object.values(progress.individualGrabBags || {});
-  if (grabBags.length > 0) {
-    relevantBasicTotal += 1; // 1 aggregate unit for full household grab bags
-    const packedCount = grabBags.filter((b) => b.isComplete).length;
-    if (packedCount === grabBags.length) {
-      earnedScore += 1;
-      completedCount++;
-    } else if (packedCount > 0) {
-      earnedScore += 0.5;
-      inProgressCount++;
-    }
-  }
-
   const percentage = relevantBasicTotal > 0 ? Math.round((earnedScore / relevantBasicTotal) * 100) : 0;
 
   let level: ReadinessLevel = 'Need to get going';

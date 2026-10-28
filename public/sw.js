@@ -1,5 +1,5 @@
 // Service Worker for UDSS Personal Preparedness PWA
-const CACHE_NAME = 'udss-resilience-v7-stable';
+const CACHE_NAME = 'udss-resilience-v9-brand-logo';
 const PRECACHE_ASSETS = [
   '/icon.svg',
   '/pwa-192x192.png',

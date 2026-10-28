@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     id: '/',
     name: 'UDSS Civilian Preparedness Assistant',
-    short_name: 'Civilian Prep',
+    short_name: 'UDSS Prep',
     description:
       'Monthly national resilience briefings and practical civilian preparedness guidance for UK citizens, published by Universal Defence and Security Solutions.',
     start_url: '/',
@@ -15,19 +15,19 @@ export default function manifest(): MetadataRoute.Manifest {
     orientation: 'portrait-primary',
     icons: [
       {
-        src: '/pwa-192x192.png',
+        src: '/pwa-192x192.png?v=9',
         sizes: '192x192',
         type: 'image/png',
         purpose: 'any',
       },
       {
-        src: '/pwa-512x512.png',
+        src: '/pwa-512x512.png?v=9',
         sizes: '512x512',
         type: 'image/png',
         purpose: 'any',
       },
       {
-        src: '/pwa-maskable-512x512.png',
+        src: '/pwa-maskable-512x512.png?v=9',
         sizes: '512x512',
         type: 'image/png',
         purpose: 'maskable',
