@@ -344,10 +344,17 @@ export function calculateHouseholdReadyScore(
   }
 
   // Advanced tier calculation
+  let advancedRelevantTotal = 0;
   let advancedCompletedCount = 0;
   advancedItems.forEach((item) => {
-    const status = progress.checklistStatuses[item.id];
-    if (status === 'completed') advancedCompletedCount++;
+    const status = progress.checklistStatuses[item.id] || 'not_addressed';
+    if (status === 'not_relevant') {
+      return; // Exclude N/A from total
+    }
+    advancedRelevantTotal++;
+    if (status === 'completed') {
+      advancedCompletedCount++;
+    }
   });
 
   return {
@@ -358,7 +365,7 @@ export function calculateHouseholdReadyScore(
     inProgressCount,
     actionRequired,
     advancedCompletedCount,
-    advancedTotal: advancedItems.length,
+    advancedTotal: advancedRelevantTotal,
   };
 }
 

@@ -52,11 +52,17 @@ export function ChecklistSection({ items, progress }: ChecklistSectionProps) {
 
   // Counts for header overview
   const basicItems = items.filter((i) => i.tier === 'basic');
+  const basicRelevantItems = basicItems.filter(
+    (i) => (progress.checklistStatuses[i.id] || 'not_addressed') !== 'not_relevant'
+  );
   const basicCompleted = basicItems.filter(
     (i) => (progress.checklistStatuses[i.id] || 'not_addressed') === 'completed'
   ).length;
 
   const advancedItems = items.filter((i) => i.tier === 'advanced');
+  const advancedRelevantItems = advancedItems.filter(
+    (i) => (progress.checklistStatuses[i.id] || 'not_addressed') !== 'not_relevant'
+  );
   const advancedCompleted = advancedItems.filter(
     (i) => (progress.checklistStatuses[i.id] || 'not_addressed') === 'completed'
   ).length;
@@ -185,7 +191,7 @@ export function ChecklistSection({ items, progress }: ChecklistSectionProps) {
                 Primary Standard
               </span>
               <span className="text-xs font-mono font-bold text-[#1B2A4A] bg-[#EAEAE2] px-2 py-0.5">
-                {basicCompleted} / {basicItems.length} Secured
+                {basicCompleted} / {basicRelevantItems.length} Secured
               </span>
             </div>
             <h3 className="font-serif text-lg sm:text-xl font-bold text-[#1B2A4A]">
@@ -221,7 +227,7 @@ export function ChecklistSection({ items, progress }: ChecklistSectionProps) {
                 Optional Self-Sufficiency
               </span>
               <span className="text-xs font-mono font-bold text-[#1B2A4A] bg-[#EAEAE2] px-2 py-0.5">
-                {advancedCompleted} / {advancedItems.length} Secured
+                {advancedCompleted} / {advancedRelevantItems.length} Secured
               </span>
             </div>
             <h3 className="font-serif text-lg sm:text-xl font-bold text-[#1B2A4A] flex items-center gap-1.5">
