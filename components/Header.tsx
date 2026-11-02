@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { Menu, X, BookOpen, CheckSquare, Info, Briefcase, Droplets, Backpack, FileText, ShieldCheck } from 'lucide-react';
-import { PWAInstallButton } from './PWAInstallButton';
 
 interface HeaderProps {
   activeTab: 'home' | 'checklist' | 'logistics' | 'about';
@@ -171,9 +170,6 @@ export function Header({
             <Briefcase className="w-3.5 h-3.5" />
             Corporate Enquiries
           </button>
-
-          {/* PWA Install Button */}
-          <PWAInstallButton />
         </div>
 
         {/* Mobile controls */}
@@ -184,7 +180,6 @@ export function Header({
           >
             Corporate
           </button>
-          <PWAInstallButton />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-1.5 text-slate-200 hover:text-white rounded focus:outline-none focus:ring-2 focus:ring-white"

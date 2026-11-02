@@ -30,26 +30,3 @@ if (!globalStore.__udssStatuses) {
 
 export const backupsMap = globalStore.__udssBackups;
 export const statusesMap = globalStore.__udssStatuses;
-
-// Pre-seed mock accountability buddies so users can immediately test linking with realistic peers
-if (!statusesMap.has('UDSS 3456')) {
-  statusesMap.set('UDSS 3456', {
-    prepId: 'UDSS 3456',
-    headlineLevel: 'Partially prepared',
-    updatedAt: new Date(Date.now() - 3600000 * 4).toISOString(),
-  });
-}
-if (!statusesMap.has('UDSS 8920')) {
-  statusesMap.set('UDSS 8920', {
-    prepId: 'UDSS 8920',
-    headlineLevel: 'Fully prepared',
-    updatedAt: new Date(Date.now() - 3600000 * 12).toISOString(),
-  });
-}
-if (!statusesMap.has('UDSS 1142')) {
-  statusesMap.set('UDSS 1142', {
-    prepId: 'UDSS 1142',
-    headlineLevel: 'Need to get going',
-    updatedAt: new Date(Date.now() - 3600000 * 24).toISOString(),
-  });
-}

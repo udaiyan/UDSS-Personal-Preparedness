@@ -8,7 +8,6 @@ import {
   Users,
   Share2,
   KeyRound,
-  UserCheck,
   ChevronRight,
   Sparkles,
   CloudCheck
@@ -22,7 +21,6 @@ interface HouseholdReadyScoreProps {
   onOpenProfiler: () => void;
   onOpenShareModal: () => void;
   onOpenRecoveryModal: () => void;
-  onOpenBuddiesModal: () => void;
   onOpenChecklist: () => void;
 }
 
@@ -32,7 +30,6 @@ export function HouseholdReadyScore({
   onOpenProfiler,
   onOpenShareModal,
   onOpenRecoveryModal,
-  onOpenBuddiesModal,
   onOpenChecklist,
 }: HouseholdReadyScoreProps) {
   const score = calculateHouseholdReadyScore(progress, items);
@@ -144,13 +141,6 @@ export function HouseholdReadyScore({
             >
               <Share2 className="w-3.5 h-3.5" />
               Share Status
-            </button>
-            <button
-              onClick={onOpenBuddiesModal}
-              className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[#1B2A4A] bg-[#F5F5F0] hover:bg-[#EAEAE2] border border-[#D0D0D0] transition-colors inline-flex items-center justify-center gap-1.5"
-            >
-              <UserCheck className="w-3.5 h-3.5 text-[#8B1A1A]" />
-              My linked people ({progress.buddies.length})
             </button>
             <button
               onClick={onOpenProfiler}

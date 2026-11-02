@@ -67,7 +67,7 @@ export function AboutUDSSSection({ onOpenCorporateModal }: AboutUDSSSectionProps
               Co-Chairman
             </span>
             <h3 className="font-serif text-xl font-bold text-[#1B2A4A]">
-              Peter Hewitt FCSI FRSA
+              Peter Hewitt JP FCSI
             </h3>
             <p className="text-xs text-[#333333] leading-relaxed">
               Co-founder of UDSS, prominent City of London financier, and former Alderman of the City of London. He brings over thirty-five years of commercial governance, financial resilience, and defence industry strategic leadership.

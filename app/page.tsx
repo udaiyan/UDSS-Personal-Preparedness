@@ -14,7 +14,6 @@ import { AboutUDSSSection } from '@/components/AboutUDSSSection';
 import { CorporateEnquiriesModal } from '@/components/CorporateEnquiriesModal';
 import { HouseholdProfilerModal } from '@/components/HouseholdProfilerModal';
 import { ShareStatusModal } from '@/components/ShareStatusModal';
-import { AccountabilityBuddiesModal } from '@/components/AccountabilityBuddiesModal';
 import { AccountRecoveryModal } from '@/components/AccountRecoveryModal';
 import { EmergencyPlanModal } from '@/components/EmergencyPlanModal';
 import { GDPRPrivacyModal } from '@/components/GDPRPrivacyModal';
@@ -39,7 +38,6 @@ export default function HomePage() {
   const [isProfilerOpen, setIsProfilerOpen] = useState<boolean>(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState<boolean>(false);
   const [isRecoveryModalOpen, setIsRecoveryModalOpen] = useState<boolean>(false);
-  const [isBuddiesModalOpen, setIsBuddiesModalOpen] = useState<boolean>(false);
   const [isEmergencyPlanOpen, setIsEmergencyPlanOpen] = useState<boolean>(false);
   const [isCorporateModalOpen, setIsCorporateModalOpen] = useState<boolean>(false);
   const [isGDPRModalOpen, setIsGDPRModalOpen] = useState<boolean>(false);
@@ -131,7 +129,6 @@ export default function HomePage() {
                   onOpenProfiler={() => setIsProfilerOpen(true)}
                   onOpenShareModal={() => setIsShareModalOpen(true)}
                   onOpenRecoveryModal={() => setIsRecoveryModalOpen(true)}
-                  onOpenBuddiesModal={() => setIsBuddiesModalOpen(true)}
                   onOpenChecklist={handleOpenChecklist}
                 />
 
@@ -216,7 +213,6 @@ export default function HomePage() {
                   onOpenProfiler={() => setIsProfilerOpen(true)}
                   onOpenShareModal={() => setIsShareModalOpen(true)}
                   onOpenRecoveryModal={() => setIsRecoveryModalOpen(true)}
-                  onOpenBuddiesModal={() => setIsBuddiesModalOpen(true)}
                   onOpenChecklist={handleOpenChecklist}
                 />
 
@@ -276,12 +272,6 @@ export default function HomePage() {
         onClose={() => setIsShareModalOpen(false)}
         progress={progress}
         items={checklistItems}
-      />
-
-      <AccountabilityBuddiesModal
-        isOpen={isBuddiesModalOpen}
-        onClose={() => setIsBuddiesModalOpen(false)}
-        progress={progress}
       />
 
       <AccountRecoveryModal

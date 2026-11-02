@@ -5,8 +5,6 @@ import {
   UserProgress,
   HouseholdProfile,
   ChecklistItemStatus,
-  NicknamePreset,
-  AccountabilityBuddy,
   EmergencyPlan,
   UtilityShutoffPlan,
   ChecklistItem,
@@ -771,53 +769,7 @@ export function markEntireGrabBag(memberId: string, complete: boolean): UserProg
   return synced;
 }
 
-export function addAccountabilityBuddy(
-  prepId: string,
-  nicknamePreset: NicknamePreset,
-  headlineLevel: 'Need to get going' | 'Partially prepared' | 'Fully prepared' = 'Partially prepared'
-): UserProgress {
-  const current = getProgressSnapshot();
-  const existingSameNicknames = current.buddies.filter((b) => b.nicknamePreset === nicknamePreset);
-  const nextIndex = existingSameNicknames.length + 1;
 
-  const newBuddy: AccountabilityBuddy = {
-    id: 'buddy_' + Date.now().toString(36),
-    prepId: prepId.trim().toUpperCase(),
-    nicknamePreset,
-    nicknameIndex: nextIndex,
-    headlineLevel,
-    lastSynced: new Date().toISOString(),
-  };
-
-  const updated: UserProgress = {
-    ...current,
-    buddies: [...current.buddies.filter((b) => b.prepId !== newBuddy.prepId), newBuddy],
-  };
-  saveStoredProgress(updated);
-  return updated;
-}
-
-export function updateBuddyStatus(buddyId: string, headlineLevel: 'Need to get going' | 'Partially prepared' | 'Fully prepared'): UserProgress {
-  const current = getProgressSnapshot();
-  const updated: UserProgress = {
-    ...current,
-    buddies: current.buddies.map((b) =>
-      b.id === buddyId ? { ...b, headlineLevel, lastSynced: new Date().toISOString() } : b
-    ),
-  };
-  saveStoredProgress(updated);
-  return updated;
-}
-
-export function removeAccountabilityBuddy(buddyId: string): UserProgress {
-  const current = getProgressSnapshot();
-  const updated: UserProgress = {
-    ...current,
-    buddies: current.buddies.filter((b) => b.id !== buddyId),
-  };
-  saveStoredProgress(updated);
-  return updated;
-}
 
 export function regenerateRecoveryToken(): UserProgress {
   const current = getProgressSnapshot();
